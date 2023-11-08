@@ -24,7 +24,7 @@ class News extends HTMLElement {
                 <div class="news"><a href="detail.html">
                     <div class="title">ABGESAGT: Teens Days</div>
                     <div class="description">Die Teens Days 2023 sind leider abgesagt :( Personen, welche sich bereits angemeldet haben, kriegen von uns eine E-Mail mit allen weiteren Informationen!</div>
-                    <div class="image"><img src="img/comecloser.png"></div>
+                    <div class="image"><img src="img/teens_days.jpeg"></div>
                 </a></div>
                 <div class="news"><a href="detail.html">
                     <div class="title">Kursleiter*in Virtual Reality gesucht</div>
