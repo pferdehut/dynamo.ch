@@ -101,19 +101,22 @@ h2{
     line-height: 1.15em;
     /*padding: var(--smallSpace);
     position: relative;
-    left: calc(var(--smallSpace)*-1);*/
-    width: 100%;
+    left: calc(var(--smallSpace)*-1);
+    width: 100%;*/
     /*border-top: var(--borderSize) solid var(--borderColor);*/
     margin: var(--smallSpace) 0 var(--mediumSpace) 0;
+    padding: calc(var(--smallSpace)/2) var(--smallSpace);
+    border: var(--borderSize) solid var(--borderColor);
+    border-radius: 100px;
 }
 
-h2::before{
+/*h2::before{
     content: "( ";
 }
 
 h2::after{
     content: " )";
-}
+}*/
 
 h3{
     font-size: var(--mediumFont);
@@ -551,6 +554,7 @@ ul.filters.scroll{
 ul.filters button{
     background: none;
     border: none;
+    border-radius: 100px;
     padding: 0;
     cursor: pointer;
     color: var(--baseText);
@@ -567,28 +571,54 @@ ul.filters li{
 }
 
 ul.filters li.active button{
-    color: var(--baseText);
+    border: 1px solid;
+    border-color: var(--baseText);
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
+    padding: calc(var(--smallSpace)/2) var(--smallSpace);
 }
 
 ul.filters li.active::before{
-    content: "(";
+    /*content: "(";
     color: var(--secondaryColor);
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
-    padding-right: 4.5px;
+    padding-right: 4.5px;*/
 }
 
 ul.filters li.active::after{
-    content: ")";
+    /*content: ")";
     color: var(--secondaryColor);
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
-    padding-left: 4.5px;
+    padding-left: 4.5px;*/
 }
 
-ul.filters li.Maschine.active::after, ul.filters li.Maschine.active::before{
+ul.filters li.Maschine.active button{
+    border-color: var(--maschine);
+}
+
+ul.filters li.Ausleihgerät.active button{
+    border-color: var(--ausleih);
+}
+
+ul.filters li.Raum.active button{
+    border-color: var(--raum);
+}
+
+ul.filters li.Tisch.active button{
+    border-color: var(--baseText);
+}
+
+ul.filters li.Konzert.active button{
+    border-color: var(--konzert);
+}
+
+ul.filters li.Kurs.active button{
+    border-color: var(--kurs);
+}
+
+/*ul.filters li.Maschine.active::after, ul.filters li.Maschine.active::before{
     color: var(--maschine);
 }
 
@@ -610,7 +640,7 @@ ul.filters li.Konzert.active::after, ul.filters li.Konzert.active::before{
 
 ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
     color: var(--kurs);
-}
+}*/
 
 /*News*/
 .newsOuter{
@@ -1248,6 +1278,13 @@ button.weitere{
     margin-left: auto;
 }
 
+.eventWrap.active .tag .wrapTag{
+    border: 1px solid;
+    border-color: var(--baseText);
+    border-radius: 100px;
+    padding: calc(var(--smallSpace)/2) var(--smallSpace);
+}
+
 .days .eventWrap.active .location{
     width: calc(100%/6*2);
     height: auto;
@@ -1270,7 +1307,7 @@ button.weitere{
     display: none;
 }
 
-.tag .wrapTag::before{
+/*.tag .wrapTag::before{
     content: "( ";
     padding-right: 2.5px;
     color: var(--secondaryColor);
@@ -1284,7 +1321,7 @@ button.weitere{
     color: var(--secondaryColor);
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
-}
+}*/
 
 .tag .wrapTag span::after{
     content: "/";
@@ -1361,13 +1398,21 @@ button.weitere{
     height: auto;
 }
 
-.konzert .tag .wrapTag::after, .konzert .tag .wrapTag::before{
+.eventWrap.konzert.active .tag .wrapTag{
+    border-color: var(--konzert);
+}
+
+.eventWrap.kurs.active .tag .wrapTag{
+    border-color: var(--kurs);
+}
+
+/*.konzert .tag .wrapTag::after, .konzert .tag .wrapTag::before{
     color: var(--konzert);
 }
 
 .kurs .tag .wrapTag::after, .kurs .tag .wrapTag::before{
     color: var(--kurs);
-}
+}*/
 
 /*Reservieren*/
 .reservieren h1{
@@ -1385,7 +1430,23 @@ button.weitere{
     border-bottom: none;
 }
 
-.maschine .tag .wrapTag::after, .maschine .tag .wrapTag::before{
+.eventWrap.maschine.active .tag .wrapTag{
+    border-color: var(--maschine);
+}
+
+.eventWrap.ausleih.active .tag .wrapTag{
+    border-color: var(--ausleih);
+}
+
+.eventWrap.raum.active .tag .wrapTag{
+    border-color: var(--raum);
+}
+
+.eventWrap.tisch.active .tag .wrapTag{
+    border-color: var(--baseText);
+}
+
+/*.maschine .tag .wrapTag::after, .maschine .tag .wrapTag::before{
     color: var(--maschine);
 }
 
@@ -1399,7 +1460,7 @@ button.weitere{
 
 .tisch .tag .wrapTag::after, .tisch .tag .wrapTag::before{
     color: var(--baseText);
-}
+}*/
 
 /*Maschine Detail*/
 .dateInfo {
