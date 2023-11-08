@@ -1,0 +1,79 @@
+const reservierenPrevTemplate = document.createElement('template');
+
+class ReservierenPrev extends HTMLElement {
+    constructor() {
+      super();
+    }
+  
+    connectedCallback() {
+        this.innerHTML = `
+        <div class="reservieren program list component active">
+            <h2>Reservieren</h2>
+            <div class="menuprogram">
+            <button onclick="listreservierenview()"><img class="liste" src="/img/Menu_Programm_List.svg"></button>
+            <button onclick="kachelreservierenview()"><img class="kacheln" src="/img/Menu_Programm_Kachel.svg"></button>
+            </div>
+            <div class="happenings">
+            <div class="days">
+                <div class="eventWrap maschine active">
+                <div class="tag"><div class="wrapTag"><span class="main">Maschine</span><span>Digital</span></div></div>
+                <div class="location">Haus 17, Digitalwerk</div>
+                <div class="image"><a href="maschine.html"><img src="/img/prusa.jpeg"></a></div>
+                <div class="event"><a href="maschine.html">3D Drucker FDM</a></div>
+                <div class="tickets"><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="39" height="71" viewBox="0 0 39 71" fill="none" class="arrow">
+                    <path d="M2.35352 1.64648L37.3535 36.6465M2.35351 68.8137L37.3535 33.8137" stroke="black" stroke-width="4"/>
+                    </svg> Reservieren</a></div>
+                </div>
+                <div class="eventWrap maschine active">
+                <div class="tag"><div class="wrapTag"><span class="main">Maschine</span><span>Digital</span></div></div>
+                <div class="location">Haus 17, Digitalwerk</div>
+                <div class="image"><a href="maschine.html"><img src="/img/scanner.jpeg"></a></div>
+                <div class="event"><a href="maschine.html">3D Scanner</a></div>
+                <div class="tickets"><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="39" height="71" viewBox="0 0 39 71" fill="none" class="arrow">
+                    <path d="M2.35352 1.64648L37.3535 36.6465M2.35351 68.8137L37.3535 33.8137" stroke="black" stroke-width="4"/>
+                    </svg> Reservieren</a></div>
+                </div>
+                <div class="eventWrap maschine active">
+                <div class="tag"><div class="wrapTag"><span class="main">Maschine</span><span>Metall</span></div></div>
+                <div class="location">Haus 15, Metallwerkstatt</div>
+                <div class="image"><a href="maschine.html"><img src="/img/dynamo-metall-abkant-01.jpeg"></a></div>
+                <div class="event"><a href="maschine.html">Abkantmaschine</a></div>
+                <div class="tickets"><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="39" height="71" viewBox="0 0 39 71" fill="none" class="arrow">
+                    <path d="M2.35352 1.64648L37.3535 36.6465M2.35351 68.8137L37.3535 33.8137" stroke="black" stroke-width="4"/>
+                    </svg> Reservieren</a></div>
+                </div>
+            </div>
+            <button class="weitere"><a href="reservieren.html">Weiter stöbern</a></button>
+        </div>
+        `;
+    }
+}
+  
+customElements.define('reservieren-prev-component', ReservierenPrev);
+
+/*Views*/
+function listreservierenview(){
+    const program = document.getElementsByClassName("reservieren");
+
+    program[0].classList.add("list");
+    program[0].classList.remove("kachel");
+
+    const kacheln = document.querySelectorAll(".reservieren.list .kacheln");
+    const liste = document.querySelectorAll(".reservieren.list .liste");
+
+    kacheln[0].src="/img/Menu_Programm_Kachel.svg";
+    liste[0].src="/img/Menu_Programm_List.svg";
+}
+
+function kachelreservierenview(){
+    const program = document.getElementsByClassName("reservieren");
+
+    program[0].classList.remove("list");
+    program[0].classList.add("kachel");
+
+    const kacheln = document.querySelectorAll(".reservieren.kachel .kacheln");
+    const liste = document.querySelectorAll(".reservieren.kachel .liste");
+
+    kacheln[0].src="/img/Menu_Programm_Kachel_active.svg";
+    liste[0].src="/img/Menu_Programm_List_deaktiv.svg";
+}

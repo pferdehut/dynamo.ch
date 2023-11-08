@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maschine</title>
+    <script src="components/header.js" type="text/javascript" defer></script>
+    <script src="components/areal.js" type="module" defer></script>
+    <script src="components/titel.js" type="text/javascript" defer></script>
+    <script src="components/textblock.js" type="text/javascript" defer></script>
+    <script src="components/infos.js" type="text/javascript" defer></script>
+    <script src="components/preise.js" type="text/javascript" defer></script>
+    <script src="components/downloads.js" type="text/javascript" defer></script>
+    <script src="components/gallery.js" type="text/javascript" defer></script>
+    <script src="components/reservieren_prev.js" type="text/javascript" defer></script>
+    <script src="components/filter_sub.js" type="text/javascript" defer></script>
+    <script src="components/footer.js" type="text/javascript" defer></script>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body class="maschine">
+    <header-component></header-component>
+    <main>
+      <title-component></title-component>
+      <div class="dateInfo sticky">
+        <div class="tickets"><a href="#anmelden"><svg xmlns="http://www.w3.org/2000/svg" width="39" height="71" viewBox="0 0 39 71" fill="none" class="arrow">
+          <path d="M2.35352 1.64648L37.3535 36.6465M2.35351 68.8137L37.3535 33.8137" stroke="black" stroke-width="4"/>
+          </svg> Reservieren</a></div>
+      </div>
+      <gallery-component></gallery-component>
+      <textblock-component></textblock-component>
+      <infos-component></infos-component>
+      <h2>Maschine reservieren</h2>
+      <div id="anmelden">
+        <div id="sbw_r6h7er"></div>
+      </div>
+      <preise-component></preise-component>
+      <downloads-component></downloads-component>
+      <reservieren-prev-component></reservieren-prev-component>
+      <filter-sub-component></filter-sub-component>
+    </main>
+    <footer-component></footer-component>
+    <script type="text/javascript">
+      (function(w, d, s, i) {
+        var script = d.createElement(s);
+        script.async = true;
+        script.src = "//widget.simplybook.it/v2/widget/widget.js";
+        script.onload = function() {
+          new SimplybookWidget({"widget_type":"iframe","url":"https:\/\/pferdehut.simplybook.it","theme":"minimal","theme_settings":{"timeline_show_end_time":"1","timeline_modern_display":"as_slots","hide_company_label":"1","timeline_hide_unavailable":"1","hide_past_days":"1","sb_base_color":"#000000","btn_color_1":"#7ef575,#8fe6b2,#89e0a9","link_color":"#8fe6b6","display_item_mode":"block","body_bg_color":"#ffffff","sb_review_image":"","dark_font_color":"#2b212b","light_font_color":"#ffffff","sb_company_label_color":"#000000","hide_img_mode":"1","sb_busy":"#aaa6aa","sb_available":"#2b212b"},"timeline":"modern","datepicker":"top_calendar","is_rtl":false,"app_config":{"clear_session":0,"allow_switch_to_ada":0,"predefined":{"location":"1","category":"5"}},"container_id":"sbw_r6h7er"});
+        };
+        d.head.appendChild(script);
+      })(window, document, 'script', 'sbw_r6h7er');
+    </script>
+    <script src="index.js"></script>
+  </body>
+</html>
