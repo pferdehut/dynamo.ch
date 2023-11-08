@@ -36,14 +36,14 @@ camera = new THREE.PerspectiveCamera( 20, window.innerWidth / (window.innerHeigh
 camera.position.z = 1000;
 camera.position.x = 1500;
 
-var light = new THREE.AmbientLight(0xffffff);
+var light = new THREE.AmbientLight(0x000000);
 scene.add(light);
 
-light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1.0);
+light = new THREE.HemisphereLight(0x000000, 0x000000, 1.0);
 light.position.set(0, 1, 0);
 scene.add(light);
 
-var directionalLight = new THREE.DirectionalLight( 0xffffff );
+var directionalLight = new THREE.DirectionalLight( 0x000000 );
 directionalLight.position.set( 1, 1, 0.5 ).normalize();
 scene.add( directionalLight );
 
