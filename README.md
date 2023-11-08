@@ -5,10 +5,12 @@
 1. Install Node.js. We'll need it to load manage dependencies and to run the build tool.
 2. Install three.js and a build tool, Vite, using a terminal in the project folder.
 
-```# three.js
+```
+# three.js
 npm install --save three
-```# vite
+# vite
 npm install --save-dev vite
+```
  
 3. From your terminal, run:
 
