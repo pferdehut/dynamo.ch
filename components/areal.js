@@ -10,7 +10,6 @@ class Areal extends HTMLElement {
 		<div class="component lage active">
 			<h2>Lageplan</h2>
 			<div id="areal">
-				<canvas id="lageplan"></canvas>
 			</div>
 		</div>
         `;
@@ -28,7 +27,6 @@ import { MTLLoader } from '/node_modules/three/examples/jsm/loaders/MTLLoader.js
 
 
 let scene, camera, renderer, controls, materials;
-//const canvas = document.getElementById('lageplan');
 const areal = document.getElementById('areal');
 
 scene = new THREE.Scene();
