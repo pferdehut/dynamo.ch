@@ -11,7 +11,7 @@
     --ausleih: #C200FF;
 
     --borderColor: #000000;
-    --borderSize: 0.75px;
+    --borderSize: 1px;
 
     --largeSpace: 10vw;
     --mediumSpace: 6vw;
@@ -54,8 +54,8 @@
 
 @font-face {
     font-family: 'Helvetice Neue Bold';
-    src: url('helveticaneueltcom-bd-webfont.woff2') format('woff2'),
-         url('helveticaneueltcom-bd-webfont.woff') format('woff');
+    src: url('fonts/helveticaneueltcom-bd-webfont.woff2') format('woff2'),
+         url('fonts/helveticaneueltcom-bd-webfont.woff') format('woff');
     font-weight: bold;
     font-style: normal;
 }
@@ -66,6 +66,15 @@
          url('fonts/helveticaneueltcom-roman-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetice Neue Bold Extended';
+    src: url('fonts/helveticaneueltcom-bdex-webfont.woff2') format('woff2'),
+         url('fonts/helveticaneueltcom-bdex-webfont.woff') format('woff');
+    font-weight: bolder;
+    font-style: normal;
+
 }
 
 
@@ -101,22 +110,30 @@ h2{
     line-height: 1.15em;
     /*padding: var(--smallSpace);
     position: relative;
-    left: calc(var(--smallSpace)*-1);
-    width: 100%;*/
+    left: calc(var(--smallSpace)*-1);*/
+    width: 100%;
     /*border-top: var(--borderSize) solid var(--borderColor);*/
     margin: var(--smallSpace) 0 var(--mediumSpace) 0;
-    padding: calc(var(--smallSpace)/2) var(--smallSpace);
+    /*padding: calc(var(--smallSpace)/2) var(--smallSpace);
     border: var(--borderSize) solid var(--borderColor);
-    border-radius: 100px;
+    border-radius: 100px;*/
 }
 
-/*h2::before{
-    content: "( ";
+h2::before{
+    font-size: 1.5em;
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    line-height: 1em;
+    content: "[";
 }
 
 h2::after{
-    content: " )";
-}*/
+    font-size: 1.5em;
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    line-height: 1em;
+    content: "]";
+}
 
 h3{
     font-size: var(--mediumFont);
@@ -140,7 +157,8 @@ a{
 }
 
 b{
-    font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif;    
+    font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bold;   
 }
 
 img, video{
@@ -267,6 +285,7 @@ header .logo{
     /*height: var(--headerHeight);*/
     height: 50px;
     margin-left: var(--smallSpace);
+    margin-top: -5px;
 }
 
 header .logo img{
@@ -341,11 +360,19 @@ nav .subMenu li{
 }
 
 nav .subMenu li::before{
-    content: "( ";
+    font-size: 1.5em;
+    content: "[";
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    line-height: 1em;
 }
 
 nav .subMenu li::after{
-    content: " )";
+    font-size: 1.5em;
+    content: "]";
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    line-height: 1em;
 }
 
 .openingHours{
@@ -385,11 +412,19 @@ nav .subMenu li::after{
 }
 
 .openingHours .bereich .bereichTitel::before{
-    content: "( ";
+    font-size: 1.5em;
+    content: "[";
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    line-height: 1em;
 }
 
 .openingHours .bereich .bereichTitel::after{
-    content: " )";
+    font-size: 1.5em;
+    content: "]";
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    line-height: 1em;
 }
 
 .openingHours .bereich:first-of-type{
@@ -397,9 +432,9 @@ nav .subMenu li::after{
 }
 
 nav .logo, .openingHours .logo{
-    height: var(--headerHeight);
+    height: 50px;
     width: auto;
-    margin-top: var(--mediumSpace);
+    margin-top: calc(var(--mediumSpace) - 5px);
 }
 
 nav .logo img, .openingHours .logo img{
@@ -554,7 +589,7 @@ ul.filters.scroll{
 ul.filters button{
     background: none;
     border: none;
-    border-radius: 100px;
+    /*border-radius: 100px;*/
     padding: 0;
     cursor: pointer;
     color: var(--baseText);
@@ -566,59 +601,34 @@ ul.filters li{
     float: left;
     color: var(--borderColor);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: baseline;
 }
 
 ul.filters li.active button{
-    border: 1px solid;
-    border-color: var(--baseText);
+    /*border: 1px solid;
+    border-color: var(--baseText);*/
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
-    padding: calc(var(--smallSpace)/2) var(--smallSpace);
+    /*padding: calc(var(--smallSpace)/2) var(--smallSpace);*/
 }
 
 ul.filters li.active::before{
-    /*content: "(";
+    content: "[";
     color: var(--secondaryColor);
-    font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    font-weight: bold;
-    padding-right: 4.5px;*/
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    font-size: 1.5em;
 }
 
 ul.filters li.active::after{
-    /*content: ")";
+    content: "]";
     color: var(--secondaryColor);
-    font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    font-weight: bold;
-    padding-left: 4.5px;*/
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    font-size: 1.5em;
 }
 
-ul.filters li.Maschine.active button{
-    border-color: var(--maschine);
-}
-
-ul.filters li.Ausleihgerät.active button{
-    border-color: var(--ausleih);
-}
-
-ul.filters li.Raum.active button{
-    border-color: var(--raum);
-}
-
-ul.filters li.Tisch.active button{
-    border-color: var(--baseText);
-}
-
-ul.filters li.Konzert.active button{
-    border-color: var(--konzert);
-}
-
-ul.filters li.Kurs.active button{
-    border-color: var(--kurs);
-}
-
-/*ul.filters li.Maschine.active::after, ul.filters li.Maschine.active::before{
+ul.filters li.Maschine.active::after, ul.filters li.Maschine.active::before{
     color: var(--maschine);
 }
 
@@ -640,7 +650,7 @@ ul.filters li.Konzert.active::after, ul.filters li.Konzert.active::before{
 
 ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
     color: var(--kurs);
-}*/
+}
 
 /*News*/
 .newsOuter{
@@ -1278,12 +1288,12 @@ button.weitere{
     margin-left: auto;
 }
 
-.eventWrap.active .tag .wrapTag{
+/*.eventWrap.active .tag .wrapTag{
     border: 1px solid;
     border-color: var(--baseText);
     border-radius: 100px;
     padding: calc(var(--smallSpace)/2) var(--smallSpace);
-}
+}*/
 
 .days .eventWrap.active .location{
     width: calc(100%/6*2);
@@ -1307,21 +1317,21 @@ button.weitere{
     display: none;
 }
 
-/*.tag .wrapTag::before{
-    content: "( ";
-    padding-right: 2.5px;
+.tag .wrapTag::before{
+    content: "[";
     color: var(--secondaryColor);
-    font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    font-weight: bold;
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    font-size: 1.5em;
 }
 
 .tag .wrapTag::after{
-    content: " )";
-    padding-left: 2.5px;
+    content: "]";
     color: var(--secondaryColor);
-    font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    font-weight: bold;
-}*/
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    font-size: 1.5em;
+}
 
 .tag .wrapTag span::after{
     content: "/";
@@ -1398,21 +1408,13 @@ button.weitere{
     height: auto;
 }
 
-.eventWrap.konzert.active .tag .wrapTag{
-    border-color: var(--konzert);
-}
-
-.eventWrap.kurs.active .tag .wrapTag{
-    border-color: var(--kurs);
-}
-
-/*.konzert .tag .wrapTag::after, .konzert .tag .wrapTag::before{
+.konzert .tag .wrapTag::after, .konzert .tag .wrapTag::before{
     color: var(--konzert);
 }
 
 .kurs .tag .wrapTag::after, .kurs .tag .wrapTag::before{
     color: var(--kurs);
-}*/
+}
 
 /*Reservieren*/
 .reservieren h1{
@@ -1430,23 +1432,7 @@ button.weitere{
     border-bottom: none;
 }
 
-.eventWrap.maschine.active .tag .wrapTag{
-    border-color: var(--maschine);
-}
-
-.eventWrap.ausleih.active .tag .wrapTag{
-    border-color: var(--ausleih);
-}
-
-.eventWrap.raum.active .tag .wrapTag{
-    border-color: var(--raum);
-}
-
-.eventWrap.tisch.active .tag .wrapTag{
-    border-color: var(--baseText);
-}
-
-/*.maschine .tag .wrapTag::after, .maschine .tag .wrapTag::before{
+.maschine .tag .wrapTag::after, .maschine .tag .wrapTag::before{
     color: var(--maschine);
 }
 
@@ -1460,7 +1446,7 @@ button.weitere{
 
 .tisch .tag .wrapTag::after, .tisch .tag .wrapTag::before{
     color: var(--baseText);
-}*/
+}
 
 /*Maschine Detail*/
 .dateInfo {
@@ -1528,12 +1514,18 @@ button.weitere{
 }
 
 .quicklinks li::before{
-    content: "( ";
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    font-size: 1.5em;
+    content: "[";
     color: var(--secondaryColor);
 }
 
 .quicklinks li::after{
-    content: " )";
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    font-size: 1.5em;
+    content: "]";
     color: var(--secondaryColor);
 }
 
@@ -1743,16 +1735,25 @@ button.weitere{
 }
 
 .allergy::before{
-    content: "(";
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    font-size: 1.5em;
+    content: "[";
 }
 
 .allergy::after{
-    content: ")";
+    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bolder;
+    font-size: 1.5em;
+    
+    content: "]";
 }
 
 .allergyTitle{
-    font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-family: "Helvetica Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
+    font-size: 1.5em;
+    line-height: 1em;
     margin-top: var(--smallSpace);
 }
 
