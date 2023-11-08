@@ -261,7 +261,8 @@ header .logo{
     float: left;
     position: relative;
     z-index: 10;
-    height: var(--headerHeight);
+    /*height: var(--headerHeight);*/
+    height: 50px;
     margin-left: var(--smallSpace);
 }
 

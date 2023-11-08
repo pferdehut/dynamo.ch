@@ -14,15 +14,15 @@ class Header extends HTMLElement {
             <div class="menu">
                 <button class="open" onclick="toggleOpen()">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="18" stroke="white" stroke-width="4" fill="black"/>
-                        <line x1="20" y1="8" x2="20" y2="20" stroke="white" stroke-width="3" id="hour" />
-                        <line x1="20" y1="6" x2="20" y2="20" stroke="white" stroke-width="3" id="minute" />
+                        <circle cx="20" cy="20" r="17" stroke="white" stroke-width="5" fill="black"/>
+                        <line x1="20" y1="9" x2="20" y2="20" stroke="white" stroke-width="4" id="hour" />
+                        <line x1="20" y1="7" x2="20" y2="20" stroke="white" stroke-width="4" id="minute" />
                     </svg>
                 </button>
                 <button class="plus" onclick="toggleMenu()">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line y1="20" x2="40" y2="20" stroke="white" stroke-width="4"/>
-                        <line x1="20" y1="8.74228e-08" x2="20" y2="40" stroke="white" stroke-width="4"/>
+                        <line y1="20" x2="40" y2="20" stroke="white" stroke-width="5"/>
+                        <line x1="20" y1="8.74228e-08" x2="20" y2="40" stroke="white" stroke-width="6"/>
                     </svg>
                 </button>
             </div>
