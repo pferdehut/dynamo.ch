@@ -7,10 +7,17 @@ class Programm extends HTMLElement {
   
     connectedCallback() {
         this.innerHTML = `
-        <div class="events program list component active">
+        <div class="events program kachel component active">
+          <div class="inputDate">
+            <input type="date" class="datepicker" />
+            <button id="date" onclick="datepicker()">
+              <span>Datum</span>
+              <img src="/img/datepicker.svg" />
+            </button>
+          </div>
           <div class="menuprogram">
-            <button onclick="listprogramview()"><img class="liste" src="/img/Menu_Programm_List.svg"></button>
-            <button onclick="kachelprogramview()"><img class="kacheln" src="/img/Menu_Programm_Kachel.svg"></button>
+            <button onclick="kachelprogramview()"><img class="kacheln" src="/img/Menu_Programm_Kachel_active.svg"></button>
+            <button onclick="listprogramview()"><img class="liste" src="/img/Menu_Programm_List_deaktiv.svg"></button>
           </div>
           <div class="happenings">
           <div class="datepicker sticky">
@@ -18,17 +25,24 @@ class Programm extends HTMLElement {
             <path d="M1.91626 37.0835L36.9163 2.0835M69.0835 37.0835L34.0835 2.08349" stroke="black" stroke-width="10"/>
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
-              </svg></span></div>
+              </svg></span>
+          </div>
           <div class="month">08 <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
             <path d="M1.91626 37.0835L36.9163 2.0835M69.0835 37.0835L34.0835 2.08349" stroke="black" stroke-width="10"/>
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
-              </svg></span></div>
+              </svg></span>
+          </div>
           <div class="year">2023 <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
             <path d="M1.91626 37.0835L36.9163 2.0835M69.0835 37.0835L34.0835 2.08349" stroke="black" stroke-width="10"/>
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
-              </svg></span></div>
+              </svg></span>
+          </div>
+          <div class="datepickerNav">
+              <div class="last"></div>
+              <div class="next"></div>
+          </div>
         </div>
         <div class="days">
           <div class="eventWrap konzert active">
@@ -58,7 +72,11 @@ class Programm extends HTMLElement {
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
               </svg></span></div>
-        </div>
+          <div class="datepickerNav">
+              <div class="last"></div>
+              <div class="next"></div>
+          </div>  
+       </div>
         <div class="days">
           <div class="eventWrap kurs active">
             <div class="hours">10:00</div>
@@ -120,6 +138,10 @@ class Programm extends HTMLElement {
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
               </svg></span></div>
+          <div class="datepickerNav">
+              <div class="last"></div>
+              <div class="next"></div>
+          </div>  
         </div>
         <div class="days">
           <div class="eventWrap konzert active">
@@ -176,4 +198,13 @@ function kachelprogramview(){
 
   kacheln[0].src="/img/Menu_Programm_Kachel_active.svg";
   liste[0].src="/img/Menu_Programm_List_deaktiv.svg";
+}
+
+function datepicker(){
+  const input = document.getElementsByClassName("datepicker");
+  try {
+    input[0].showPicker();
+  } catch (error) {
+    window.alert(error);
+  }
 }

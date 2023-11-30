@@ -9,7 +9,7 @@ let n = 0;
 allFilters.forEach(function(filter, index) {
   let forFilter = filter.innerHTML;
   n = index + 1;
-  this[index] = "<li class='filter filter" + n + "'><button onclick='filterSub(" + n + ")'>" + forFilter + "</button></li>";
+  this[index] = "<li class='filter filter" + n + "'><a href='#" + forFilter + "'>" + forFilter + "</a></li>";
 
   const alle = document.querySelectorAll(".component");
 
@@ -20,10 +20,11 @@ allFilters = allFilters.join("");
 class FilterSub extends HTMLElement {
     connectedCallback() {
         this.innerHTML = 
-        `<ul id="filter" class="filters">
-          <li class="filter Alles active"><button onclick="AllesFilter()">Alles</button></li>
+        `<div class="programFilter">
+        <ul id="filter" class="filters">
           ${allFilters}
-        </ul>`
+        </ul>
+        </div>`
     ;
     }
 }
@@ -32,6 +33,9 @@ customElements.define('filter-sub-component', FilterSub);
 
 /*Filter*/
 function AllesFilter() {
+  const filterContainer = document.querySelectorAll(".programFilter");
+  filterContainer[0].classList.remove("active");
+
   const filter = document.querySelectorAll(".filter");
   const filterAlles = document.querySelectorAll(".filter.Alles");
 
@@ -48,6 +52,9 @@ function AllesFilter() {
 }
 
 function filterSub(n) {
+  const filterContainer = document.querySelectorAll(".programFilter");
+  filterContainer[0].classList.add("active");
+
   const filterSubpage = document.querySelectorAll(".filter");
   const alle = document.querySelectorAll(".component");
 

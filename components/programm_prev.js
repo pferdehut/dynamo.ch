@@ -7,11 +7,11 @@ class ProgrammPrev extends HTMLElement {
   
     connectedCallback() {
         this.innerHTML = `
-        <div class="events program list component active">
-          <h2>Programm</h2>
+        <div class="events program kachel component active">
+          <h2>Vorschläge</h2>
           <div class="menuprogram">
-            <button onclick="listprogramview()"><img class="liste" src="/img/Menu_Programm_List.svg"></button>
-            <button onclick="kachelprogramview()"><img class="kacheln" src="/img/Menu_Programm_Kachel.svg"></button>
+          <button onclick="kachelprogramview()"><img class="kacheln" src="/img/Menu_Programm_Kachel_active.svg"></button>
+          <button onclick="listprogramview()"><img class="liste" src="/img/Menu_Programm_List_deaktiv.svg"></button>
           </div>
           <div class="happenings">
             <div class="datepicker">

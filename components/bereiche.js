@@ -9,34 +9,36 @@ class Bereiche extends HTMLElement {
         this.innerHTML = `
         <div class="component bereiche active">
             <h2>Werkstätten</h2>
-            <div class="newsNav">
-                <button onclick="currentNews(1)" class="navDot newsDot active"></button>
-                <button onclick="currentNews(2)" class="navDot newsDot"></button>
-                <button onclick="currentNews(3)" class="navDot newsDot"></button>
-                <button onclick="currentNews(4)" class="navDot newsDot"></button>
-            </div>
-            <div class="newsWrap">
-                <div class="news active"><a href="werkstatt.html">
-                    <div class="title">Werkbereich 13 – Medien</div>
-                    <div class="description">Papierstau und leere Druckerpatrone, aber dein Portfolio muss morgen abgegeben werden? Keine Panik, bei uns kannst du ohne Pannen drucken, kopieren und gestalten.</div>
-                    <div class="image"><img src="img/medien.jpeg"></div>
-                </a></div>
-                <div class="news"><a href="werkstatt.html">
-                    <div class="title">Werkbereich 15 – Metall</div>
-                    <div class="description">Der Rückspiegel deiner Vespa ist abgebrochen und der Auspuff lottert auch? Hier bringst du dein Lieblingsteil wieder zum Glänzen.</div>
-                    <div class="image"><img src="img/metall.jpeg"></div>
-                </a></div>
-                <div class="news"><a href="werkstatt.html">
-                    <div class="title">Werkbereich 17 – Digital</div>
-                    <div class="description">Tauche in virtuelle Sphären ein, modelliere mit Computern, verwirkliche deine audiovisuellen Visionen und verwandle PLA-Filament in Fantasiefiguren oder Präzisionsteile. Im Digitalwerk dreht sich alles um das digitale Universum.</div>
-                    <div class="image"><img src="img/digital.jpeg"></div>
-                </a></div>
-                <div class="news"><a href="werkstatt.html">
-                    <div class="title">Werkbereich 21 – Textil</div>
-                    <div class="description">Den Lieblingspulli ist beim Waschen geschrumpft? In der Textilbearbeitung findest du verschiedenste Stoffe, ausgefallene Schnittmuster und allerlei Maschinen, um dir dein nächstes Lieblingskleidungsstück selbst zu machen.</div>
-                    <div class="image"><img src="img/textil_raum.jpeg"></div>
-                </a></div>
-            </div>
+            <div class="bereich"><a href="werkstatt.html">
+                <div class="location">Haus 13</div>
+                <div class="title">Medienwerkstatt</div>
+                <div class="link">Details</div>
+            </a></div>
+            <div class="bereich"><a href="werkstatt.html">
+                <div class="location">Haus 15</div>
+                <div class="title">Metallwerkstatt</div>
+                <div class="link">Details</div>
+            </a></div>
+            <div class="bereich"><a href="werkstatt.html">
+                <div class="location">Haus 17</div>
+                <div class="title">Digitalwerk</div>
+                <div class="link">Details</div>
+            </a></div>
+            <div class="bereich"><a href="werkstatt.html">
+                <div class="location">Haus 21</div>
+                <div class="title">Textilwerkstatt</div>
+                <div class="link">Details</div>
+            </a></div>
+            <div class="bereich"><a href="werkstatt.html">
+                <div class="location">Haus 21</div>
+                <div class="title">Fotolabor</div>
+                <div class="link">Details</div>
+            </a></div>
+            <div class="bereich"><a href="werkstatt.html">
+                <div class="location">Haus 21</div>
+                <div class="title">Keramikwerkstatt</div>
+                <div class="link">Details</div>
+            </a></div>
         </div>
     `;
     }

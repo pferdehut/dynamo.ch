@@ -22,8 +22,8 @@ class Footer extends HTMLElement {
                     <span><a href="https://www.youtube.com/" target="_blank" rel="noopener">Youtube</a><br></span>
                 </div>
                 <div class="intern">
-                    <span><a href="index.html/#arealplan" rel="noopener">Lageplan</a></span>
-                    <span><a href="dynamo.html/#jobs">Jobs<br></a></span>
+                    <span><a href="info.html#areal" rel="noopener">Lageplan</a></span>
+                    <span><a href="dynamo.html#jobs">Jobs<br></a></span>
                     <span><a href="">Impressum</a></span>
                     <span><a href="">Login</a></span>
                 </div>
@@ -57,17 +57,15 @@ window.addEventListener("scroll",() =>{
     // Get the bounding box of the second element 
     let filter = document.getElementById('filter'); 
 
-    let heightStyle = window.innerWidth/100*5;
-    let widthStyle = window.innerWidth/100*2.5;
     
     // Check if the two elements are touching each other 
-    if (footerTop <= window.innerHeight) { 
+   /* if (footerTop <= window.innerHeight) { 
         filter.classList.add('scroll');
         filter.classList.remove('sticky');
     } else { 
         filter.classList.add('sticky');
         filter.classList.remove('scroll');
-    }
+    }*/
 }, false);
 
 window.addEventListener("resize",() =>{
@@ -83,7 +81,7 @@ window.addEventListener("resize",() =>{
     let widthStyle = window.innerWidth/100*2.5;
     
     // Check if the two elements are touching each other 
-    if (footerTop <= window.innerHeight) { 
+   /* if (footerTop <= window.innerHeight) { 
         filter.style.position = "absolute";
         filter.style.bottom = heightStyle*-1;
         filter.style.left = widthStyle*-1;
@@ -91,5 +89,5 @@ window.addEventListener("resize",() =>{
         filter.style.position = "fixed";
         filter.style.bottom = "0";
         filter.style.left = "0";
-    }
+    }*/
 }, false);

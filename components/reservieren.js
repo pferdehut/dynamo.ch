@@ -7,10 +7,10 @@ class Reservieren extends HTMLElement {
   
     connectedCallback() {
         this.innerHTML = `
-        <div class="reservieren program list component active">
+        <div class="reservieren program kachel component active">
             <div class="menuprogram">
-            <button onclick="listreservierenview()"><img class="liste" src="/img/Menu_Programm_List.svg"></button>
-            <button onclick="kachelreservierenview()"><img class="kacheln" src="/img/Menu_Programm_Kachel.svg"></button>
+            <button onclick="kachelreservierenview()"><img class="kacheln" src="/img/Menu_Programm_Kachel_active.svg"></button>
+            <button onclick="listreservierenview()"><img class="liste" src="/img/Menu_Programm_List_deaktiv.svg"></button>
             </div>
             <div class="happenings">
             <div class="days">
@@ -125,8 +125,8 @@ customElements.define('reservieren-component', Reservieren);
 function listreservierenview(){
   const program = document.querySelectorAll(".reservieren");
 
-  program[0].classList.add("list");
-  program[0].classList.remove("kachel");
+  program[1].classList.add("list");
+  program[1].classList.remove("kachel");
 
   const kacheln = document.querySelectorAll(".reservieren.list .kacheln");
   const liste = document.querySelectorAll(".reservieren.list .liste");
@@ -138,8 +138,8 @@ function listreservierenview(){
 function kachelreservierenview(){
   const program = document.querySelectorAll(".reservieren");
 
-  program[0].classList.remove("list");
-  program[0].classList.add("kachel");
+  program[1].classList.remove("list");
+  program[1].classList.add("kachel");
 
   const kacheln = document.querySelectorAll(".reservieren.kachel .kacheln");
   const liste = document.querySelectorAll(".reservieren.kachel .liste");

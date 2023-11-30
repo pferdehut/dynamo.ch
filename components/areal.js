@@ -11,6 +11,45 @@ class Areal extends HTMLElement {
 			<h2>Lageplan</h2>
 			<div id="areal">
 			</div>
+			<div id="arealDescription">
+				<div class="haus">
+					<div class="number">
+						13
+					</div>
+					<div class="rooms">
+						<div>Medienwerkstatt</div>
+						<div>Projektraum</div>
+					</div>
+				</div>
+				<div class="haus">
+					<div class="number">
+						15
+					</div>
+					<div class="rooms">
+						<div>Metallwerkstatt</div>
+						<div>Schmuckwerkstatt</div>
+					</div>
+				</div>
+				<div class="haus">
+					<div class="number">
+						17
+					</div>
+					<div class="rooms">
+						<div>Digitalwerk</div>
+					</div>
+				</div>
+				<div class="haus">
+					<div class="number">
+						19
+					</div>
+					<div class="rooms">
+						<div>Küche</div>
+						<div>Besprechungsraum 1</div>
+						<div>Besprechungsraum 2</div>
+						<div>Besprechungsraum 3</div>
+					</div>
+				</div>
+			</div>
 		</div>
         `;
     }
@@ -48,11 +87,11 @@ scene.add( directionalLight );
 var mesh = null;
 
 var mtlLoader = new MTLLoader();
-mtlLoader.load("./models/H19_wireframe_transparent.mtl", function(materials){
+mtlLoader.load("./models/Ganzes_Areal_black.mtl", function(materials){
     materials.preload();
 	var objLoader = new OBJLoader();
 	objLoader.setMaterials(materials);
-	objLoader.load( './models/H19_wireframe_transparent.obj', function ( object ) {    
+	objLoader.load( './models/Ganzes_Areal_black.obj', function ( object ) {    
 		mesh = object;
 		scene.add( mesh );
 	});

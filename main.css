@@ -16,6 +16,7 @@
     --largeSpace: 10vw;
     --mediumSpace: 6vw;
     --smallSpace: 3vw;
+    --smallSpaceBorder: 3vw;
 
     --headerHeight: 40px;
     
@@ -38,9 +39,10 @@
 
 @media screen and (min-width: 1000px){
     :root{
-        --largeSpace: 5vw;
-        --mediumSpace: 2vw;
-        --smallSpace: 2vw;
+        --largeSpace: 7.5vh;
+        --mediumSpace: 5vh;
+        --smallSpace: 2vh;
+        --smallSpaceBorder: 5vh;
 
         --smallFont: calc(0.7rem + 0.5vw);;
         --standartFont: calc(0.9rem + 0.5vw);
@@ -48,7 +50,7 @@
         --mediumFont: calc(2rem + 0.75vw);
         --largeFont: calc(3rem + 0.75vw);
 
-        --headerHeight: 40px;
+        --headerHeight: 50px;
     }
 }
 
@@ -98,7 +100,7 @@ h1{
     font-weight: bold;
     line-height: 1.15em;
     margin: var(--largeSpace) 0;
-    padding: 0 var(--smallSpace);
+    padding: 0 var(--smallSpaceBorder);
     z-index: 3;
     position: relative;
 }
@@ -178,7 +180,7 @@ ul{
 }
 
 main{
-    padding: var(--headerHeight) 0;
+    padding: var(--headerHeight) 0 0 0;
     position: relative;
 }
 
@@ -283,8 +285,8 @@ header .logo{
     position: relative;
     z-index: 10;
     /*height: var(--headerHeight);*/
-    height: 50px;
-    margin-left: var(--smallSpace);
+    height: calc(var(--headerHeight)/4*5);
+    margin-left: var(--smallSpaceBorder);
     margin-top: -5px;
 }
 
@@ -295,7 +297,7 @@ header .logo img{
 
 header .menu{
     position: fixed;
-    right: var(--smallSpace);
+    right: var(--smallSpaceBorder);
     z-index: 100;
     mix-blend-mode: difference;
     background: var(--baseText);
@@ -320,7 +322,7 @@ nav{
     background: var(--baseColor);
     z-index: 15;
     transition: top 0.6s ease 0s;
-    padding: 0 var(--smallSpace);
+    padding: 0 var(--smallSpaceBorder);
     box-sizing: border-box;
 }
 
@@ -332,8 +334,8 @@ nav ul li{
     list-style: none;
     position: relative;
     width: 100%;
-    left: calc(var(--smallSpace)*-1);
-    padding: 0 var(--smallSpace);
+    left: calc(var(--smallSpaceBorder)*-1);
+    padding: 0 var(--smallSpaceBorder);
     line-height: 1.25em;
 }
 
@@ -386,7 +388,7 @@ nav .subMenu li::after{
     background: var(--baseColor);
     z-index: 15;
     transition: top 0.6s ease 0s;
-    padding: 0 var(--smallSpace);
+    padding: 0 var(--smallSpaceBorder);
     box-sizing: border-box;
 }
 
@@ -396,14 +398,14 @@ nav .subMenu li::after{
 
 .openingHours .bereicheWrap{
     position: relative;
-    width: calc(100% + var(--smallSpace)*2);
-    margin-left: calc(var(--smallSpace)*-1);
+    width: calc(100% + var(--smallSpaceBorder)*2);
+    margin-left: calc(var(--smallSpaceBorder)*-1);
     margin-top: var(--largeSpace);
 }
 
 .openingHours .bereich{
     border-top: var(--borderSize) solid var(--borderColor);
-    padding: var(--mediumSpace) var(--smallSpace);
+    padding: var(--mediumSpace) var(--smallSpaceBorder);
 }
 
 .openingHours .bereich .bereichTitel{
@@ -448,16 +450,17 @@ footer{
     width: 100%;
     left: 0;
     box-sizing: border-box;
-    margin: var(--mediumSpace) 0;
+    margin: 0 0 var(--mediumSpace) 0;
     padding-bottom: var(--mediumSpace);
 }
 
 footer .newsletter{
-    padding: var(--mediumSpace) var(--smallSpace);
+    padding: var(--mediumSpace) var(--smallSpaceBorder);
     background: var(--secondaryColor);
     justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
+    gap: var(--smallSpace);
 }
 
 footer .newsletter .question{
@@ -471,11 +474,12 @@ footer .newsletter .input{
     box-sizing: border-box;
     background-color: var(--baseColor);
     height: var(--largeSpace);
-    border-radius: 100px;
+    /*border-radius: 100px;*/
     border: var(--borderSize) solid var(--baseText);
     display: flex;
     margin: 0;
     gap: 0;
+    justify-content: end;
 }
 
 footer .newsletter .input>*{
@@ -486,10 +490,12 @@ footer .newsletter .input>*{
     margin: 0;
     padding: 0;
     background: none;
-    border-radius: 100px;
+    /*border-radius: 100px;*/
     float: right;
-    box-shadow: 0 0 15px 0 var(--secondaryColor);
-    border: var(--borderSize) solid var(--borderColor);
+    /*box-shadow: 0 0 15px 0 var(--secondaryColor);
+    border: var(--borderSize) solid var(--borderColor);*/
+    border: 1.5px solid var(--borderColor);
+    border-left: 2.5px solid var(--borderColor);
 }
 
 footer .newsletter .input button{
@@ -505,7 +511,7 @@ footer .newsletter .input input#email{
     padding: 0 var(--smallSpace);
     float: left;
     box-shadow: none;
-    border-radius: 100px 0 0 100px;
+    /*border-radius: 100px 0 0 100px;*/
 }
 
 footer .links{
@@ -513,7 +519,7 @@ footer .links{
 }
 
 footer .links, footer .kontakt, footer .zugehoerigkeit{
-    padding: var(--smallSpace);
+    padding: var(--smallSpace) var(--smallSpaceBorder);
 }
 
 footer .zugehoerigkeit{
@@ -535,10 +541,21 @@ footer img{
     width: auto;
 }
 
+@media screen and (min-width: 1000px){  
+    footer .newsletter{
+        justify-content: center;
+    }  
+
+    footer .newsletter .question, footer .newsletter .input{
+        width: calc(50% - var(--smallSpace)/2);
+        margin-bottom: 0;
+    }
+}
+
 /*Components*/
 .component{
     display: none;
-    padding: var(--smallSpace) var(--smallSpace) var(--largeSpace);
+    padding: var(--smallSpace) var(--smallSpaceBorder) var(--largeSpace);
     border-top: var(--borderSize) solid var(--borderColor);
 }
 
@@ -557,17 +574,26 @@ footer img{
 /*Buttons*/
 
 /*Filters*/
+.programFilter{
+    width: 100vw;
+    position: sticky;
+    z-index: 10;
+    background: var(--baseColor);
+    border-top: var(--borderSize) solid var(--borderColor);
+    box-shadow: 0 -4px 7.5px 0 var(--baseTransparent);
+    min-height: calc(var(--headerHeight) + var(--smallSpace)*2);
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 ul.filters{
     margin: 0;
     padding: var(--smallSpace) var(--smallSpace);
-    width: 100vw;
-    position: fixed;
-    background: var(--baseColor);
-    border-top: var(--borderSize) solid var(--borderColor);
-    left: 0;
-    bottom: 0;
     box-sizing: border-box;
-    z-index: 10;
     display: flex;
     justify-content: flex-start;
     gap: var(--mediumSpace);
@@ -576,9 +602,7 @@ ul.filters{
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    box-shadow: 0 -4px 7.5px 0 var(--baseTransparent);
     scrollbar-width: none;
-    min-height: calc(var(--headerHeight) + var(--smallSpace)*2);
 }
 
 ul.filters.scroll{
@@ -652,6 +676,34 @@ ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
     color: var(--kurs);
 }
 
+.programFilter ul.subfilters{
+    margin: 0;
+    padding: var(--smallSpace) var(--smallSpace);
+    box-sizing: border-box;
+    /*display: flex;*/
+    display: none;
+    justify-content: flex-start;
+    gap: var(--mediumSpace);
+    align-items: center;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.programFilter.active ul.subfilters{
+    display: flex;
+}
+
+ul.subfilters li{
+    list-style: none;
+    float: left;
+    color: var(--borderColor);
+    display: flex;
+    align-items: baseline;
+}
+
 /*News*/
 .newsOuter{
     justify-content: center;
@@ -660,7 +712,7 @@ ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
 .newsWrap{
     display: flex;
     align-items: flex-start;
-    padding: var(--largeSpace) var(--smallSpace) 0 var(--smallSpace);
+    padding: var(--largeSpace) var(--smallSpaceBorder) 0 var(--smallSpaceBorder);
     overflow-x: scroll;
     position: relative;
     min-width: 100%;
@@ -672,8 +724,8 @@ ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
 }
 
 .news{
-    width: 100%;
-    min-width: 100%;
+    width: calc(100% + var(--smallSpaceBorder)*2);
+    min-width: calc(100% + var(--smallSpaceBorder)*2);
     flex-direction: column;
     scroll-snap-align: start;
     display: none;
@@ -682,11 +734,6 @@ ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
 .news.active{
     display: flex;
     animation: fadeNews 0.8s;
-}
-
-.news .image{
-    position: relative;
-    width: calc(100% + var(--smallSpace)*2);
 }
 
 @keyframes fadeNews {
@@ -704,11 +751,11 @@ ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
     font-weight: bold;
     font-size: var(--mediumFont);
     line-height: 1.15em;
-    padding: 0 var(--smallSpace);
+    padding: 0 var(--smallSpaceBorder);
 }
 
 .news .description{
-    padding: 0 var(--smallSpace);
+    padding: 0 var(--smallSpaceBorder);
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -727,7 +774,7 @@ ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
     background: var(--baseColor);
     color: transparent;
     transition: padding 0.4s ease;
-    border: 1px solid var(--borderColor);
+    border: 3px solid var(--borderColor);
     border-radius: 100%;
     cursor: pointer;
     padding: var(--smallSpace) calc(var(--smallSpace)/6*4);
@@ -757,8 +804,8 @@ ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
 
     .newsOuter .newsWrap{
         padding: var(--largeSpace) 0 0 0;
-        width: calc(100% + var(--smallSpace)*2);
-        min-width: calc(100% + var(--smallSpace)*2);
+        width: calc(100% + var(--smallSpaceBorder)*2);
+        min-width: calc(100% + var(--smallSpaceBorder)*2);
     }
 
     .newsOuter .news {
@@ -780,7 +827,7 @@ ul.filters li.Kurs.active::after, ul.filters li.Kurs.active::before{
 .einleitung{
     font-size: var(--mediumSmallFont);
     line-height: 1.15em;
-    padding: 0 var(--smallSpace) var(--mediumSpace) var(--smallSpace) ;
+    padding: 0 var(--smallSpaceBorder) var(--mediumSpace) var(--smallSpaceBorder) ;
 }
 
 /*Infos*/
@@ -848,17 +895,28 @@ form textarea{
 }
 
 form input[type=submit] {
-    padding: 5px 10px;
+    /*padding: 5px 10px;
     border-radius: 100px;
-    background: var(--secondaryColor);
+    background: var(--secondaryColor);*/
+    background: var(--baseColor);
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
     color: var(--baseText);
     width: auto;
-    box-shadow: 0 0 15px 0 var(--baseTransparent);
+    /*box-shadow: 0 0 15px 0 var(--baseTransparent);
     border: var(--borderSize) solid var(--borderColor);
     width: calc(30% - var(--borderSize)*2);
-    height: calc(var(--largeSpace) - var(--borderSize)*2);
+    height: calc(var(--largeSpace) - var(--borderSize)*2);*/
+    border: 5px solid var(--secondaryColor);
+    width: 100%;
+   /* line-height: 2.5em;*/
+}
+
+@media screen and (min-width: 1000px){
+    form {
+        width: calc(100%/6*5);
+        margin: 0;
+    }
 }
 
 /*Team*/
@@ -947,6 +1005,10 @@ form input[type=submit] {
 @media screen and (min-width: 1000px){    
     #team{
         flex-direction: row;
+    }
+
+    #team h2{
+        margin-bottom: var(--smallSpace);
     }
     
     #team .teamWrap{
@@ -1146,7 +1208,7 @@ form input[type=submit] {
     }
 
     .gallery{
-        padding: var(--mediumSpace) var(--smallSpace);
+        padding: var(--mediumSpace) var(--smallSpaceBorder);
     }
 }
 
@@ -1160,14 +1222,14 @@ form input[type=submit] {
     width: 100%;
     min-width: 100%;
     height: var(--headerHeight);
-    padding: var(--mediumSpace) var(--smallSpace);
+    padding: var(--mediumSpace) var(--smallSpaceBorder);
     align-items: center;
     gap: var(--smallSpace);
     position: sticky;
     top: 0;
     background-color: var(--baseColor);
     z-index: 1;
-    margin-left: calc(var(--smallSpace)*-1);
+    margin-left: calc(var(--smallSpaceBorder)*-1);
 }
 
 .menuprogram button{
@@ -1175,27 +1237,27 @@ form input[type=submit] {
     border: none;
     padding: 0;
     cursor: pointer;
-}
-
-.menuprogram img{
-    width: var(--headerHeight);
-    height: auto;
+    width: calc(100%/6 - var(--smallSpace));
 }
 
 button.weitere{
-    padding: 5px 10px;
+    /*padding: 5px 10px;
     border-radius: 100px;
-    background: var(--secondaryColor);
+    background: var(--secondaryColor);*/
+    background: var(--baseColor);
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
     width: auto;
     font-size: var(--standartFont);
     margin: var(--mediumSpace) auto;
     display: block;
-    box-shadow: 0 0 15px 0 var(--baseTransparent);
+    /*box-shadow: 0 0 15px 0 var(--baseTransparent);
     border: var(--borderSize) solid var(--borderColor);
     min-width: calc(30% - var(--borderSize)*2);
-    height: calc(var(--largeSpace) - var(--borderSize)*2);
+    height: calc(var(--largeSpace) - var(--borderSize)*2);*/
+    border: 5px solid var(--secondaryColor);
+    width: 100%;
+    line-height: 2.5em;
 }
 
 .happenings .datepicker{
@@ -1208,19 +1270,78 @@ button.weitere{
     width: 100%;
     display: flex;
     position: sticky;
+    justify-content: center;
     top: calc(var(--headerHeight) + var(--mediumSpace)*2);
     background-color: var(--baseColor);
     z-index: 1;
-    padding: var(--smallSpace);
-    margin-left: calc(var(--smallSpace)*-1);
+    padding: var(--smallSpace) var(--smallSpaceBorder);
+    margin-left: calc(var(--smallSpaceBorder)*-1);
+    gap: var(--smallSpace);
 }
 
-.happenings .datepicker .day, .happenings .datepicker .month{
+/*.happenings .datepicker .day, .happenings .datepicker .month{
     width: calc(100%/6);
 }
 
 .happenings .datepicker .year{
-    width: calc(100%/6*4);
+    width: calc(100%/6*2);
+}*/
+
+.happenings .datepickerNav .next{
+    content: "";
+    background-image: url(img/arrow_right.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right center;
+    width: calc(100%/6);
+    height: 35px;
+    position: absolute;
+    right: var(--smallSpaceBorder);
+    z-index: 100;
+}
+
+.happenings .datepickerNav .last{
+    content: "";
+    background-image: url(img/arrow_right.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right center;
+    width: calc(100%/6);
+    height: 35px;
+    position: absolute;
+    left: var(--smallSpaceBorder);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    z-index: 100;
+}
+
+.inputDate{
+    position: absolute;
+    z-index: 10;
+    right: var(--smallSpaceBorder);
+    margin-top: calc(var(--smallSpace)*1.5);
+}
+
+.inputDate .datepicker{
+    display: none;
+}
+
+.inputDate button{
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: var(--borderSize) solid var(--borderColor);
+    padding: var(--smallSpace);
+}
+
+.inputDate button img{
+    width: calc(200%/6 - var(--smallSpace)*2);
 }
 
 .happenings{
@@ -1249,7 +1370,7 @@ button.weitere{
     transition: all .5s ease;
     font-size: var(--smallFont);
     flex-wrap: wrap;
-    padding: var(--mediumSpace) 0 var(--largeSpace) 0;
+    padding: var(--smallSpace) 0 var(--mediumSpace) 0;
     width: 100%;
     gap: var(--smallSpace);
     border-bottom: var(--borderSize) solid var(--borderColor);
@@ -1274,7 +1395,7 @@ button.weitere{
 }
 
 .days .eventWrap.active .hours{
-    width: calc(100%/6 - var(--smallSpace));
+    /*width: calc(100%/6 - var(--smallSpace));*/
     height: auto;
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
@@ -1282,7 +1403,7 @@ button.weitere{
 }
 
 .days .eventWrap.active .tag{
-    max-width: calc(100%/6*3 - var(--smallSpace));
+    /*max-width: calc(100%/6*3 - var(--smallSpace));*/
     height: auto;
     order: 3;
     margin-left: auto;
@@ -1296,7 +1417,7 @@ button.weitere{
 }*/
 
 .days .eventWrap.active .location{
-    width: calc(100%/6*2);
+    /*width: calc(100%/6*2);*/
     height: auto;
     order: 2;
 }
@@ -1311,6 +1432,7 @@ button.weitere{
     order: 6;
     margin-top: -5px;
     text-transform: uppercase;
+    display: none;
 }
 
 .days .eventWrap.active .tickets a svg{
@@ -1347,6 +1469,31 @@ button.weitere{
     padding-right: 5px;
 }
 
+
+@media screen and (min-width: 1000px){
+    .menuprogram button{
+        width: calc(100%/12 - var(--smallSpace));
+    }
+
+    .happenings{
+        width: calc(100%/6*5);
+    }
+
+    .happenings .datepicker{
+        width: calc(100%/6*5 + var(--smallSpace)*2);
+        margin-left: 0;
+        top: var(--smallSpace);
+    }
+
+    .inputDate button{
+        width: calc(100vw/6*2);
+    }
+
+    .inputDate button img{
+        width: calc(100vw/12 - var(--smallSpace));
+    }
+}
+
 /*List View*/
 .list .days .eventWrap.active{
     justify-content: flex-end;
@@ -1355,6 +1502,19 @@ button.weitere{
 .list .days .eventWrap.active .image{
     display: none;
     height: auto;
+}
+
+@media screen and (min-width: 1000px){
+    .list .menuprogram{
+        z-index: 0;
+    }
+
+    .list .happenings{
+        margin: calc((var(--headerHeight) + var(--mediumSpace) + var(--smallSpace))*-1) 0 0 calc(100%/6);
+    }
+    .list .days {
+        width: 100%;
+    }
 }
 
 /*Kachel View*/
@@ -1388,6 +1548,34 @@ button.weitere{
     display: block;
 }
 
+@media screen and (min-width: 1000px){
+    .kachel .days{
+        display: grid;
+        align-items: start;
+        column-gap: var(--mediumSpace);
+        row-gap: var(--mediumSpace);
+        grid-template-columns: calc(100%/6*2 - (var(--mediumSpace)/3*2)) calc(100%/6*2 - (var(--mediumSpace)/3*2)) calc(100%/6*2 - (var(--mediumSpace)/3*2));
+    }
+
+    .kachel .days .eventWrap.active:nth-child(3n+1){
+        width: 100%;
+    }
+    
+    .kachel .days .eventWrap.active:nth-child(3n+2){
+        width: 100%;
+        padding-left: 0;
+    }
+    
+    .kachel .days .eventWrap.active:nth-child(3n+3){
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .kachel .days:last-child .eventWrap.active:last-child {
+        border-bottom: none;
+    }
+}
+
 /*Programm*/
 .programm h1{
     margin-bottom: var(--smallSpace);
@@ -1397,6 +1585,7 @@ button.weitere{
     width: 10px;
     position: absolute;
     padding-left: 5px;
+    display: none;
 }
 
 .sup{
@@ -1426,8 +1615,8 @@ button.weitere{
 }
 
 .eventWrap.tisch.active{
-    margin-left: calc(var(--smallSpace)*-1);
-    padding: var(--mediumSpace) var(--smallSpace) var(--largeSpace) var(--smallSpace);
+    margin-left: calc(var(--smallSpaceBorder)*-1);
+    padding: var(--mediumSpace) var(--smallSpaceBorder) var(--largeSpace) var(--smallSpaceBorder);
     background: var(--secondaryColor);
     border-bottom: none;
 }
@@ -1457,8 +1646,8 @@ button.weitere{
     position: sticky;
     top: 0;
     z-index: 3;
-    padding: var(--mediumSpace) var(--smallSpace) var(--smallSpace) var(--smallSpace);
-    width: calc(100% - var(--smallSpace)*2);
+    padding: var(--mediumSpace) var(--smallSpaceBorder) var(--smallSpace) var(--smallSpaceBorder);
+    width: calc(100% - var(--smallSpaceBorder)*2);
     margin: calc(var(--largeSpace)*-1) 0 var(--largeSpace);
     min-height: var(--headerHeight);
 }
@@ -1479,6 +1668,19 @@ button.weitere{
 
 .dateInfo .tickets a svg{
     display: none;
+}
+
+@media screen and (min-width: 1000px){
+    .dateInfo .date {
+        width: calc(100%/6*1);
+    }
+    .dateInfo .time{
+        width: calc(100%/6*5);
+    }
+
+    #anmelden{
+        width: calc(100%/6*5);
+    }
 }
 
 /*Keyvisual*/
@@ -1505,7 +1707,7 @@ button.weitere{
     background: var(--baseText);
     mix-blend-mode: difference;
     margin: 0 0 var(--mediumSpace);
-    padding: 0 var(--smallSpace);
+    padding: 0 var(--smallSpaceBorder);
     box-sizing: border-box;
 }
 
@@ -1540,13 +1742,9 @@ button.weitere{
 
 /*History*/
 .etappe{
-    padding: var(--mediumSpace) 0;
+    padding: var(--smallSpace) 0 0 0;
     border-bottom: var(--borderSize) solid var(--borderColor);
     width: 100%;
-}
-
-.etappe:first-of-type{
-    padding-top: var(--smallSpace);
 }
 
 .etappe h3{
@@ -1594,6 +1792,10 @@ button.weitere{
     display: block;
 }
 
+.etappe.active h3::after{
+    background-image: url(/img/arrow_up.svg);
+}
+
 @media screen and (min-width: 1000px){
     .etappe{
         width: calc(100%/6*5);
@@ -1635,7 +1837,7 @@ button.weitere{
 
 /*Kontakt*/
 .kontaktDynamo .bereich{
-    padding: var(--mediumSpace) 0;
+    padding: var(--smallSpace) 0 0 0;
     border-top: var(--borderSize) solid var(--borderColor);
     width: 100%;
 }
@@ -1692,7 +1894,7 @@ button.weitere{
 
 .menu.component .date{
     position: absolute;
-    left: var(--smallSpace);
+    left: var(--smallSpaceBorder);
 }
 
 .menu.component h2{
@@ -1700,7 +1902,7 @@ button.weitere{
 }
 
 .menuWrap{
-    padding: var(--mediumSpace) 0 var(--largeSpace) 0;
+    padding: var(--smallSpace) 0 var(--mediumSpace) 0;
     border-bottom: var(--borderSize) solid var(--borderColor);
     display: flex;
     flex-wrap: wrap;
@@ -1735,18 +1937,11 @@ button.weitere{
 }
 
 .allergy::before{
-    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    font-weight: bolder;
-    font-size: 1.5em;
-    content: "[";
+    content: "(";
 }
 
 .allergy::after{
-    font-family: "Helvetice Neue Bold Extended", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    font-weight: bolder;
-    font-size: 1.5em;
-    
-    content: "]";
+    content: ")";
 }
 
 .allergyTitle{
@@ -1783,8 +1978,56 @@ button.weitere{
 }
 
 /*Werkbereich*/
-.component.bereiche{
-    justify-content: center;
+.bereiche .bereich a{
+    width: calc(100vw - var(--smallSpace)*2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--borderSize) solid var(--borderColor);
+    padding: var(--smallSpace) 0;
+}
+
+.bereiche .bereich .location{
+    width: 100%;
+    font-size: var(--smallFont);
+}
+
+.bereiche .bereich .title{
+    font-size: var(--mediumFont);
+    font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: bold;
+    line-height: 1.15em;
+    height: auto;
+}
+
+.bereiche .bereich .link::before {
+    content: var(--intern);
+    padding-right: 5px;
+}
+
+.youtube{
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding-bottom: var(--largeSpace);
+}
+
+@media screen and (min-width: 1000px){
+    .youtube{
+        width: calc(100%/6*4);
+        margin: 0 calc((100% - var(--smallSpaceBorder))/6);
+        padding: 0 var(--smallSpaceBorder) var(--largeSpace) var(--smallSpaceBorder);
+    }
+
+    .bereiche .bereich a{
+        width: calc((100vw - var(--smallSpaceBorder)*2)/6*5);
+        margin-left: calc((100vw - var(--smallSpaceBorder)*2)/6);
+    }
+
+    .bereiche .bereich:first-of-type a{
+        margin-left: 0;
+        padding-top: 0;
+    }
 }
 
 /*Lageplan*/
@@ -1796,9 +2039,36 @@ button.weitere{
     display: none;
 }
 
+#arealDescription{
+    width: 100%;
+}
+
+#arealDescription .haus{
+    display: flex;
+    flex-wrap: wrap;
+    border-top: var(--borderSize) solid var(--borderColor);
+    width: 100%;
+    min-width: 100%;
+    padding: var(--smallSpace) 0;
+}
+
+#arealDescription .haus .number{
+    width: calc(100%/6);
+    font-size: 1.5em;
+    font-family: "Helvetice Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: bold;
+    line-height: 1em;
+    /*color: var(--secondaryColor);*/
+}
+
+#arealDescription .haus .rooms{
+    width: calc(100%/6*5);
+    line-height: 1.5em;
+}
+
 /*Menü Print*/
 @media print {
-    header, nav, .openingHours, .textblock, .imageGallery, .einleitung, h1, .filters, footer{
+    header, nav, .openingHours, .textblock, .imageGallery, .einleitung, h1, .filters, footer, .programFilter{
         display: none !important;
     }
 
@@ -1834,14 +2104,14 @@ button.weitere{
     }
 
     .menuTitle{
-        font-size: 26px;
+        font-size: 24px;
         margin-bottom: 15px;
     }
 
     .menu.component h2{
         text-align: center;
         padding-top: 150px;
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .menu.component .date {
@@ -1851,7 +2121,7 @@ button.weitere{
     }
 
     .menu.component .date{
-        font-size: 20px;
+        font-size: 16px;
     }
 
     .menu.component .food, .menu.component .price{

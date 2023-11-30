@@ -5,7 +5,7 @@ let allFilters = Array.from(programFilters);
 
 allFilters.forEach(function(filter, index) {
   let forProgramm = filter.innerHTML;
-  this[index] = "<li class='filter " + forProgramm + "'><button onclick='" + forProgramm + "Filter()'>" + forProgramm + "</button></li>";
+  this[index] = "<li class='filter " + forProgramm + "'><button onclick='" + forProgramm + "Filter()'>" + forProgramm + "</button>";
 }, allFilters);
 
 let filtered = allFilters.filter((item, index) => allFilters.indexOf(item) === index);
@@ -15,10 +15,15 @@ class FilterProgramm extends HTMLElement {
     
     connectedCallback() {
         this.innerHTML = 
-        `<ul id="filter" class="filters">
+        `
+        <div class="programFilter">
+        <ul id='subfilter' class='subfilters'><li class='subfilter'>Rock</li><li class='subfilter'>Hip-Hop</li><li class='subfilter'>Elektro</li><li class='subfilter'>Punk</li><li class='subfilter'>Pop</li></ul></li>
+        <ul id="filter" class="filters">
           <li class="filter Alles active"><button onclick="AllesFilter()">Alles</button></li>
           ${filtered}
-        </ul>`;
+        </ul>
+        </div>`
+        ;
     }
 }
   
@@ -26,6 +31,9 @@ customElements.define('filter-programm-component', FilterProgramm);
 
 /*Filter*/
 function AllesFilter() {
+  const filterContainer = document.querySelectorAll(".programFilter");
+  filterContainer[0].classList.remove("active");
+
   const filter = document.querySelectorAll(".filter");
   const filterAlles = document.querySelectorAll(".filter.Alles");
 
@@ -42,6 +50,9 @@ function AllesFilter() {
 }
 
 function MaschineFilter(){
+  const filterContainer = document.querySelectorAll(".programFilter");
+  filterContainer[0].classList.add("active");
+
   const filter = document.querySelectorAll(".filter");
   const filterMaschine = document.querySelectorAll(".filter.Maschine");
 
@@ -62,6 +73,9 @@ function MaschineFilter(){
 }
 
 function TischFilter(){
+  const filterContainer = document.querySelectorAll(".programFilter");
+  filterContainer[0].classList.add("active");
+
   const filter = document.querySelectorAll(".filter");
   const filterMaschine = document.querySelectorAll(".filter.Tisch");
 
@@ -82,6 +96,9 @@ function TischFilter(){
 }
 
 function AusleihgerätFilter(){
+  const filterContainer = document.querySelectorAll(".programFilter");
+  filterContainer[0].classList.add("active");
+
   const filter = document.querySelectorAll(".filter");
   const filterMaschine = document.querySelectorAll(".filter.Ausleihgerät");
 
@@ -102,6 +119,9 @@ function AusleihgerätFilter(){
 }
 
 function RaumFilter(){
+  const filterContainer = document.querySelectorAll(".programFilter");
+  filterContainer[0].classList.add("active");
+
   const filter = document.querySelectorAll(".filter");
   const filterMaschine = document.querySelectorAll(".filter.Raum");
 
@@ -122,6 +142,9 @@ function RaumFilter(){
 }
 
 function KonzertFilter(){
+  const filterContainer = document.querySelectorAll(".programFilter");
+  filterContainer[0].classList.add("active");
+
   const filter = document.querySelectorAll(".filter");
   const filterKonzert = document.querySelectorAll(".filter.Konzert");
 
@@ -142,6 +165,9 @@ function KonzertFilter(){
 }
 
 function KursFilter(){
+  const filterContainer = document.querySelectorAll(".programFilter");
+  filterContainer[0].classList.add("active");
+
   const filter = document.querySelectorAll(".filter");
   const filterKurs = document.querySelectorAll(".filter.Kurs");
 

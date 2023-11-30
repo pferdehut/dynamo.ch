@@ -24,6 +24,8 @@ customElements.define('keyvisual-component', Keyvisual);
 
 import * as THREE from '/node_modules/three/build/three.module.min.js';
 
+import { OBJLoader } from '/node_modules/three/examples/jsm/loaders/OBJLoader.js';
+import { GLTFLoader } from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { EffectComposer } from '/node_modules/three/examples/jsm/postprocessing/EffectComposer.js';
 import { TexturePass } from '/node_modules/three/examples/jsm/postprocessing/TexturePass.js';
 import { ClearPass } from '/node_modules/three/examples/jsm/postprocessing/ClearPass.js';
@@ -32,6 +34,7 @@ import { OutputPass } from '/node_modules/three/examples/jsm/postprocessing/Outp
 
 let camera, composer, renderer;
 let box, torus;
+let boxPosition;
 
 init();
 animate();
@@ -49,8 +52,27 @@ function init() {
 	const scene1 = new THREE.Scene();
 	const scene2 = new THREE.Scene();
 
-	box = new THREE.Mesh( new THREE.BoxGeometry( 4, 4, 4 ) );
-	scene1.add( box );
+	// Instantiate a loader
+    box = new GLTFLoader();
+
+	// Load a glTF resource
+	box.load(
+		'models/stern.gltf',
+		// called when the resource is loaded
+		function ( gltf ) {
+			scene1.add( gltf.scene );
+			boxPosition = gltf.scene;
+
+		},
+		// called while loading is progressing
+		function ( xhr ) {
+			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+		},
+		// called when loading has errors
+		function ( error ) {
+			console.log( 'An error happened' );
+		}
+	);
 
 	torus = new THREE.Mesh( new THREE.TorusGeometry( 3, 1, 16, 32 ) );
 	scene2.add( torus );
@@ -106,7 +128,7 @@ function init() {
 function onWindowResize() {
 
 	const width = window.innerWidth;
-	const height = window.innerHeight - window.innerWidth;
+	const height = window.innerHeight;
 
 	camera.aspect = width / height;
 	camera.updateProjectionMatrix();
@@ -122,10 +144,10 @@ function animate() {
 
 	const time = performance.now() * 0.001 + 6000;
 
-	box.position.x = Math.cos( time / 1.5 ) * 2;
-	box.position.y = Math.sin( time ) * 2;
-	box.rotation.x = time;
-	box.rotation.y = time / 2;
+	boxPosition.position.x = Math.cos( time / 1.5 ) * 2;
+	boxPosition.position.y = Math.sin( time ) * 2;
+	boxPosition.rotation.x = time;
+	boxPosition.rotation.y = time / 2;
 
 	torus.position.x = Math.cos( time ) * 2;
 	torus.position.y = Math.sin( time / 1.5 ) * 2;

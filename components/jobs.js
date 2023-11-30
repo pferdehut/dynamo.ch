@@ -7,7 +7,7 @@ class Jobs extends HTMLElement {
   
     connectedCallback() {
         this.innerHTML = `
-        <div class="history jobs component active">
+        <div id="jobs" class="history jobs component active">
             <h2>Jobs & Praktika</h2>
             <div class="etappe job">
                 <h3><small>Beschäftigungsgrad: 60%</small> Mitarbeiter*in Werkbereich Dynamo mit Schwerpunkt auf digitale Angebote</h3>
