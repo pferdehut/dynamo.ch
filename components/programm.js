@@ -12,7 +12,7 @@ class Programm extends HTMLElement {
             <input type="date" class="datepicker" />
             <button id="date" onclick="datepicker()">
               <span>Datum</span>
-              <img src="/img/datepicker.svg" />
+              <img src="img/datepicker.svg" />
             </button>
           </div>
           <div class="menuprogram">
