@@ -58,11 +58,11 @@ class Areal extends HTMLElement {
 customElements.define('areal-component', Areal);
 
 
-import * as THREE from '/node_modules/three/build/three.module.min.js';
+import * as THREE from 'three';
 
-import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { OBJLoader } from '/node_modules/three/examples/jsm/loaders/OBJLoader.js';
-import { MTLLoader } from '/node_modules/three/examples/jsm/loaders/MTLLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 
 
 let scene, camera, renderer, controls, materials;

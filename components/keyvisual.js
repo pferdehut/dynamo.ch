@@ -22,14 +22,14 @@ class Keyvisual extends HTMLElement {
   
 customElements.define('keyvisual-component', Keyvisual);
 
-import * as THREE from '/node_modules/three/build/three.module.min.js';
+import * as THREE from 'three';
 
-import { GLTFLoader } from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js';
-import { EffectComposer } from '/node_modules/three/examples/jsm/postprocessing/EffectComposer.js';
-import { TexturePass } from '/node_modules/three/examples/jsm/postprocessing/TexturePass.js';
-import { ClearPass } from '/node_modules/three/examples/jsm/postprocessing/ClearPass.js';
-import { MaskPass, ClearMaskPass } from '/node_modules/three/examples/jsm/postprocessing/MaskPass.js';
-import { OutputPass } from '/node_modules/three/examples/jsm/postprocessing/OutputPass.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { TexturePass } from 'three/addons/postprocessing/TexturePass.js';
+import { ClearPass } from 'three/addons/postprocessing/ClearPass.js';
+import { MaskPass, ClearMaskPass } from 'three/addons/postprocessing/MaskPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 let camera, composer, renderer;
 let box, torus;
