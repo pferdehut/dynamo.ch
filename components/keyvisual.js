@@ -34,7 +34,7 @@ import { OutputPass } from '/node_modules/three/examples/jsm/postprocessing/Outp
 
 let camera, composer, renderer;
 let box, torus;
-let boxPosition;
+let boxPosition, torusPosition;
 
 init();
 animate();
@@ -74,8 +74,28 @@ function init() {
 		}
 	);
 
-	torus = new THREE.Mesh( new THREE.TorusGeometry( 3, 1, 16, 32 ) );
-	scene2.add( torus );
+	torus = new GLTFLoader();
+
+	// Load a glTF resource
+	torus.load(
+		'models/stern.gltf',
+		// called when the resource is loaded
+		function ( gltf ) {
+			scene2.add( gltf.scene );
+			torusPosition = gltf.scene;
+		},
+		// called while loading is progressing
+		function ( xhr ) {
+			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+		},
+		// called when loading has errors
+		function ( error ) {
+			console.log( 'An error happened' );
+		}
+	);
+
+	/*torus = new THREE.Mesh( new THREE.TorusGeometry( 3, 1, 16, 32 ) );
+	scene2.add( torus );*/
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setClearColor( 0xffffff );
@@ -144,15 +164,15 @@ function animate() {
 
 	const time = performance.now() * 0.001 + 6000;
 
-	boxPosition.position.x = Math.cos( time / 1.5 ) * 2;
+	boxPosition.position.x = Math.cos( time / 2.5 ) * 2;
 	boxPosition.position.y = Math.sin( time ) * 2;
 	boxPosition.rotation.x = time;
 	boxPosition.rotation.y = time / 2;
 
-	torus.position.x = Math.cos( time ) * 2;
-	torus.position.y = Math.sin( time / 1.5 ) * 2;
-	torus.rotation.x = time;
-	torus.rotation.y = time / 2;
+	torusPosition.position.x = Math.cos( time / 2 ) * 2;
+	torusPosition.position.y = Math.sin( time / 1.5 ) * 2;
+	torusPosition.rotation.x = time;
+	torusPosition.rotation.y = time / 2;
 
 	renderer.clear();
 	composer.render( time );

@@ -7,16 +7,9 @@ class ProgrammToday extends HTMLElement {
   
     connectedCallback() {
         this.innerHTML = `
-        <div class="events program kachel component active">
-          <h2>Programm</h2>
-          <div class="menuprogram">
-          <button onclick="kachelprogramview()"><img class="kacheln" src="/img/Menu_Programm_Kachel_active.svg"></button>
-          <button onclick="listprogramview()"><img class="liste" src="/img/Menu_Programm_List_deaktiv.svg"></button>
-          </div>
+        <div class="heute events program kachel component active">
+          <h2>Heute im Dynamo</h2>
           <div class="happenings">
-            <div class="datepicker">
-              <div class="today">Heute im Dynamo</div>
-            </div>
             <div class="days">
               <div class="eventWrap kurs active">
                 <div class="hours">10:00</div>
