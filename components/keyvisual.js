@@ -24,7 +24,6 @@ customElements.define('keyvisual-component', Keyvisual);
 
 import * as THREE from '/node_modules/three/build/three.module.min.js';
 
-import { OBJLoader } from '/node_modules/three/examples/jsm/loaders/OBJLoader.js';
 import { GLTFLoader } from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { EffectComposer } from '/node_modules/three/examples/jsm/postprocessing/EffectComposer.js';
 import { TexturePass } from '/node_modules/three/examples/jsm/postprocessing/TexturePass.js';

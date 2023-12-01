@@ -15,11 +15,11 @@ class Gallery extends HTMLElement {
                 </div>
                 <div class="gallery">
                     <ul class="galleryWrap">
-                        <li class="galleryImage" id="1"><img src="/img/lasercutter.jpeg"></li>
-                        <li class="galleryImage" id="2"><img src="/img/lasercutter2.jpeg"></li>
+                        <li class="galleryImage" id="1"><img src="img/lasercutter.jpeg"></li>
+                        <li class="galleryImage" id="2"><img src="img/lasercutter2.jpeg"></li>
                         <li class="galleryImage" id="3">
                             <video muted controls>
-                                <source src="/vid/lasercutter.mp4" type="video/mp4">
+                                <source src="vid/lasercutter.mp4" type="video/mp4">
                             </video>
                         </li>
                     </ul>

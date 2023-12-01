@@ -39,55 +39,10 @@ class Footer extends HTMLElement {
                     <a href="mailto:info@dynamo.ch">info@dynamo.ch</a>
                 </p>
             </div>
-            <div class="zugehoerigkeit"><img class="stadtzuerich" src="/img/Zugehörigkeitsmarke.svg"></div>
+            <div class="zugehoerigkeit"><img class="stadtzuerich" src="img/Zugehörigkeitsmarke.svg"></div>
         </footer>
     `;
     }
 }
   
 customElements.define('footer-component', Footer);
-
-/*Footer*/
-window.addEventListener("scroll",() =>{
-    // Get the bounding box of the first element 
-    let footer = document.getElementById('footer'); 
-    let element1 = footer.getBoundingClientRect(); 
-    let footerTop = element1.top;
-
-    // Get the bounding box of the second element 
-    let filter = document.getElementById('filter'); 
-
-    
-    // Check if the two elements are touching each other 
-   /* if (footerTop <= window.innerHeight) { 
-        filter.classList.add('scroll');
-        filter.classList.remove('sticky');
-    } else { 
-        filter.classList.add('sticky');
-        filter.classList.remove('scroll');
-    }*/
-}, false);
-
-window.addEventListener("resize",() =>{
-    // Get the bounding box of the first element 
-    let footer = document.getElementById('footer'); 
-    let element1 = footer.getBoundingClientRect(); 
-    let footerTop = element1.top;
-
-    // Get the bounding box of the second element 
-    let filter = document.getElementById('filter');
-
-    let heightStyle = window.innerWidth/100*5;
-    let widthStyle = window.innerWidth/100*2.5;
-    
-    // Check if the two elements are touching each other 
-   /* if (footerTop <= window.innerHeight) { 
-        filter.style.position = "absolute";
-        filter.style.bottom = heightStyle*-1;
-        filter.style.left = widthStyle*-1;
-    } else { 
-        filter.style.position = "fixed";
-        filter.style.bottom = "0";
-        filter.style.left = "0";
-    }*/
-}, false);
