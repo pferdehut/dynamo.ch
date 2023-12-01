@@ -10,7 +10,7 @@ class Header extends HTMLElement {
 
     
         <header>
-            <div class="logo"><a href="index.html"><img src="/img/Logo_Dynamo.svg"></a></div>
+            <div class="logo"><a href="index.html"><img src="img/Logo_Dynamo.svg"></a></div>
             <div class="menu">
                 <button class="open" onclick="toggleOpen()">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@ class Header extends HTMLElement {
             </div>
         </header>
         <nav class="wrapMenu">
-            <div class="logo"><a href="index.html"><img src="/img/Logo_Dynamo.svg"></a></div>
+            <div class="logo"><a href="index.html"><img src="img/Logo_Dynamo.svg"></a></div>
             <ul class="mainMenu">
                 <li><a href="programm.html">Programm</a></li>
                 <li><a href="reservieren.html">Reservieren</a></li>
@@ -44,7 +44,7 @@ class Header extends HTMLElement {
             </ul>
         </nav>
         <div class="openingHours">
-            <div class="logo"><a href="index.html"><img src="/img/Logo_Dynamo.svg"></a></div>
+            <div class="logo"><a href="index.html"><img src="img/Logo_Dynamo.svg"></a></div>
             <div class="bereicheWrap">
                 <div class="bereich">
                     <div class="bereichTitel">Raumvermietung</div>

@@ -78,7 +78,7 @@ function init() {
 
 	// Load a glTF resource
 	torus.load(
-		'models/stern.gltf',
+		'models/tshirt.gltf',
 		// called when the resource is loaded
 		function ( gltf ) {
 			scene2.add( gltf.scene );
