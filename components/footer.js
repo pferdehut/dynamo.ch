@@ -39,7 +39,7 @@ class Footer extends HTMLElement {
                     <a href="mailto:info@dynamo.ch">info@dynamo.ch</a>
                 </p>
             </div>
-            <div class="zugehoerigkeit"><img class="stadtzuerich" src="img/Zugehörigkeitsmarke.svg"></div>
+            <div class="zugehoerigkeit"><img class="stadtzuerich" src="img/zugehoerigkeitsmarke.svg"></div>
         </footer>
     `;
     }
