@@ -390,6 +390,7 @@ nav .subMenu li::after{
     transition: top 0.6s ease 0s;
     padding: 0 var(--smallSpaceBorder);
     box-sizing: border-box;
+    overflow-x: scroll;
 }
 
 .openingHours.active{
@@ -401,16 +402,18 @@ nav .subMenu li::after{
     width: calc(100% + var(--smallSpaceBorder)*2);
     margin-left: calc(var(--smallSpaceBorder)*-1);
     margin-top: var(--largeSpace);
+    height: auto;
 }
 
 .openingHours .bereich{
     border-top: var(--borderSize) solid var(--borderColor);
-    padding: var(--mediumSpace) var(--smallSpaceBorder);
+    padding: var(--smallSpace) var(--smallSpaceBorder) var(--mediumSpace) var(--smallSpaceBorder);
 }
 
 .openingHours .bereich .bereichTitel{
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
+    margin-bottom: var(--smallSpace);
 }
 
 .openingHours .bereich .bereichTitel::before{
@@ -431,6 +434,7 @@ nav .subMenu li::after{
 
 .openingHours .bereich:first-of-type{
     border-top: none;
+    padding-top: 0;
 }
 
 nav .logo, .openingHours .logo{
@@ -563,6 +567,10 @@ footer img{
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
+}
+
+.component > div:last-of-type p:last-child{
+    margin-bottom: 0;
 }
 
 /*Icons*/
@@ -1144,7 +1152,6 @@ form input[type=submit] {
 @media screen and (min-width: 1000px){
     .downloadOuter{
         width: calc(100%/6*5);
-        margin: 0 0 var(--largeSpace) 0;
         box-sizing: border-box;
     }
 
@@ -1489,9 +1496,9 @@ button.weitere{
     }
 
     .happenings .datepicker{
-        width: calc(100%/6*5 + var(--smallSpace)*2);
+       /* width: calc(100%/6*5 + var(--smallSpace)*2);
         margin-left: 0;
-        top: var(--smallSpace);
+        top: var(--smallSpace);*/
     }
 
     .inputDate button{
@@ -1499,7 +1506,7 @@ button.weitere{
     }
 
     .inputDate button img{
-        width: calc(100vw/12 - var(--smallSpace));
+        width: calc(100vw/16 - var(--smallSpace));
     }
 
     button.weitere{
@@ -1563,11 +1570,13 @@ button.weitere{
 
 @media screen and (min-width: 1000px){
     .kachel .days{
-        display: grid;
-        align-items: start;
+        /*display: grid;
+        align-items: start;*/
         column-gap: var(--mediumSpace);
         row-gap: var(--mediumSpace);
-        grid-template-columns: calc(100%/6*2 - (var(--mediumSpace)/3*2)) calc(100%/6*2 - (var(--mediumSpace)/3*2)) calc(100%/6*2 - (var(--mediumSpace)/3*2));
+        /*grid-template-columns: calc(100%/6*2 - (var(--mediumSpace)/3*2)) calc(100%/6*2 - (var(--mediumSpace)/3*2)) calc(100%/6*2 - (var(--mediumSpace)/3*2));*/
+        -webkit-column-count: 3;
+        column-count: 3;
     }
 
     .kachel .days .eventWrap.active:nth-child(3n+1){
@@ -1629,7 +1638,7 @@ button.weitere{
 
 .eventWrap.tisch.active{
     margin-left: calc(var(--smallSpaceBorder)*-1);
-    padding: var(--mediumSpace) var(--smallSpaceBorder) var(--largeSpace) var(--smallSpaceBorder);
+    padding: var(--smallSpace) var(--smallSpaceBorder) var(--mediumSpace) var(--smallSpaceBorder);
     background: var(--secondaryColor);
     border-bottom: none;
 }
@@ -1844,7 +1853,7 @@ button.weitere{
 
     .awareness .content{
         width: calc(100%/6*5);
-        margin: 0 0 var(--largeSpace) calc(100%/6);
+        margin: 0 0 0 calc(100%/6);
     }
 }
 
@@ -2077,6 +2086,19 @@ button.weitere{
 #arealDescription .haus .rooms{
     width: calc(100%/6*5);
     line-height: 1.5em;
+}
+
+/*Werkstatt*/
+.werkstattMaschine .maschine.active{
+    position: relative;
+}
+
+.werkstattMaschine .maschine.active .tickets{
+    display: flex;
+    position: absolute;
+    width: auto;
+    bottom: var(--mediumSpace);
+    line-height: 2.15em;
 }
 
 /*Menü Print*/
