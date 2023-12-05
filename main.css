@@ -1495,14 +1495,18 @@ button.weitere{
         width: 100%;
     }
 
-    .happenings .datepicker{
-       /* width: calc(100%/6*5 + var(--smallSpace)*2);
+    .list .happenings .datepicker{
+        width: calc(100% - var(--smallSpaceBorder));
         margin-left: 0;
-        top: var(--smallSpace);*/
+    }
+
+    .list .happenings .days{
+        padding-left: var(--smallSpaceBorder);
+        width: calc(100% - var(--smallSpaceBorder));
     }
 
     .inputDate button{
-        width: calc(100vw/6*2);
+        width: calc(100vw/6*2   - var(--mediumSpace));
     }
 
     .inputDate button img{
@@ -1510,7 +1514,7 @@ button.weitere{
     }
 
     button.weitere{
-        width: calc(100%/6*2);
+        width: calc(100%/6*2  - var(--mediumSpace));
     }
 }
 
