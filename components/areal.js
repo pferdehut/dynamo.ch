@@ -61,42 +61,45 @@ customElements.define('areal-component', Areal);
 import * as THREE from 'three';
 
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 
-let scene, camera, renderer, controls, materials;
+let scene, camera, renderer, controls, dynamo;
 const areal = document.getElementById('areal');
 
 scene = new THREE.Scene();
 camera = new THREE.PerspectiveCamera( 20, window.innerWidth / (window.innerHeight/2), 1, 4000 );
-camera.position.z = 1000;
-camera.position.x = 1500;
+camera.position.z = 100;
+camera.position.x = 50;
 
 var light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
 
-light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1.0);
-light.position.set(0, 1, 0);
-scene.add(light);
-
 var directionalLight = new THREE.DirectionalLight( 0xffffff );
-directionalLight.position.set( 1, 1, 0.5 ).normalize();
+directionalLight.position.set( 1, 1, 1 ).normalize();
 scene.add( directionalLight );
 
-var mesh = null;
+dynamo = new GLTFLoader();
 
-var mtlLoader = new MTLLoader();
-mtlLoader.load("./models/Ganzes_Areal_black.mtl", function(materials){
-    materials.preload();
-	var objLoader = new OBJLoader();
-	objLoader.setMaterials(materials);
-	objLoader.load( './models/Ganzes_Areal_black.obj', function ( object ) {    
-		mesh = object;
-		scene.add( mesh );
-	});
-});
-
+// Load a glTF resource
+dynamo.load(
+	'./models/areal.glb',
+	// called when the resource is loaded
+	function ( gltf ) {
+		gltf.scene.children[1].material.opacity = 0.5;
+		gltf.scene.children[1].material.transparent = true;
+		gltf.scene.children[1].material.smoothShading = true;
+		scene.add( gltf.scene );
+	},
+	// called while loading is progressing
+	function ( xhr ) {
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+	},
+	// called when loading has errors
+	function ( error ) {
+		console.log( 'An error happened' );
+	}
+);
 
 renderer = new THREE.WebGLRenderer({antialias: true, alpha: true, logarithmicDepthBuffer: true});
 renderer.setSize( window.innerWidth, window.innerHeight/2 );

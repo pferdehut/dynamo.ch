@@ -410,6 +410,10 @@ nav .subMenu li::after{
     padding: var(--smallSpace) var(--smallSpaceBorder) var(--mediumSpace) var(--smallSpaceBorder);
 }
 
+.openingHours .bereich p{
+    margin-bottom: var(--smallSpace);
+}
+
 .openingHours .bereich .bereichTitel{
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
@@ -438,7 +442,7 @@ nav .subMenu li::after{
 }
 
 nav .logo, .openingHours .logo{
-    height: 50px;
+    height: calc(var(--headerHeight)/4*5);
     width: auto;
     margin-top: calc(var(--mediumSpace) - 5px);
 }
@@ -1771,6 +1775,7 @@ button.weitere{
     padding: var(--smallSpace) 0 0 0;
     border-bottom: var(--borderSize) solid var(--borderColor);
     width: 100%;
+    position: relative;
 }
 
 .etappe h3{
@@ -1778,7 +1783,6 @@ button.weitere{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    position: relative;
     gap: 0;
     display: block;
     padding-right: 45px;
@@ -1797,7 +1801,7 @@ button.weitere{
     text-align: right;
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: var(--mediumSpace);
 }
 
 .etappe h3 small{
@@ -1816,6 +1820,11 @@ button.weitere{
 
 .etappe.active > p{
     display: block;
+    width: calc(100% - 60px);
+}
+
+.etappe.active > p:last-of-type{
+    margin-bottom: var(--mediumSpace) !important;
 }
 
 .etappe.active h3::after{
@@ -1877,6 +1886,7 @@ button.weitere{
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;
     line-height: 1.15em;
+    margin-bottom: var(--smallSpace);
 }
 
 @media screen and (min-width: 1000px){

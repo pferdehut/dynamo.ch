@@ -75,7 +75,7 @@ class Header extends HTMLElement {
                         <p>
                         Mi – Fr: 14:00 – 21:00*<br>
                         Sa: 14:00 – 19:00<br>
-                        *Wenn niemand da, schliessen wir 1 Stunde früher!
+                        <small>*Wenn niemand da, schliessen wir 1 Stunde früher!</small>
                         </p>
                     </div>
                     <div class="contact">
