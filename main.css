@@ -2068,7 +2068,8 @@ button.weitere{
 
 /*Lageplan*/
 #areal{
-    margin-left: calc(var(--smallSpace)*-1);
+   margin-left: calc(var(--smallSpaceBorder)*-1);
+   position: relative;
 }
 
 #areal #lageplan{
