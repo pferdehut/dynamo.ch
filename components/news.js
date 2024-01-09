@@ -17,21 +17,25 @@ class News extends HTMLElement {
             </div>
             <div class="newsWrap">
                 <div class="news active"><a href="detail.html">
+                    <div class="date">08/01/2023</div>
                     <div class="title">Come Closer</div>
                     <div class="description">Das Dynamo gehört der Jugend! Und genau diese steht bei uns im Herbst besonders im Vordergrund.</div>
                     <div class="image"><img src="img/comecloser.png"></div>
                 </a></div>
                 <div class="news"><a href="detail.html">
+                    <div class="date">07/01/2023</div>
                     <div class="title">ABGESAGT: Teens Days</div>
                     <div class="description">Die Teens Days 2023 sind leider abgesagt :( Personen, welche sich bereits angemeldet haben, kriegen von uns eine E-Mail mit allen weiteren Informationen!</div>
                     <div class="image"><img src="img/teens_days.jpeg"></div>
                 </a></div>
                 <div class="news"><a href="detail.html">
+                    <div class="date">06/01/2023</div>
                     <div class="title">Kursleiter*in Virtual Reality gesucht</div>
                     <div class="description">Du kennst dich mit VR-Brillen aus und willst dein Wissen weitergeben?</div>
                     <div class="image"><img src="img/vr.jpeg"></div>
                 </a></div>
                 <div class="news"><a href="detail.html">
+                    <div class="date">05/01/2023</div>
                     <div class="title">ABGESAGT: Teens Days</div>
                     <div class="description">Die Teens Days 2023 sind leider abgesagt :( Personen, welche sich bereits angemeldet haben, kriegen von uns eine E-Mail mit allen weiteren Informationen!</div>
                     <div class="image"><img src="img/comecloser.png"></div>

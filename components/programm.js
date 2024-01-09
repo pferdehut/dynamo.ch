@@ -21,13 +21,13 @@ class Programm extends HTMLElement {
           </div>
           <div class="happenings">
           <div class="datepicker sticky">
-          <div class="day">05 <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
+          <div class="day">05&thinsp;/&thinsp; <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
             <path d="M1.91626 37.0835L36.9163 2.0835M69.0835 37.0835L34.0835 2.08349" stroke="black" stroke-width="10"/>
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
               </svg></span>
           </div>
-          <div class="month">08 <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
+          <div class="month">08&thinsp;/&thinsp; <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
             <path d="M1.91626 37.0835L36.9163 2.0835M69.0835 37.0835L34.0835 2.08349" stroke="black" stroke-width="10"/>
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
@@ -57,12 +57,12 @@ class Programm extends HTMLElement {
           </div>
         </div>
         <div class="datepicker sticky">
-          <div class="day">06 <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
+          <div class="day">06&thinsp;/&thinsp; <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
             <path d="M1.91626 37.0835L36.9163 2.0835M69.0835 37.0835L34.0835 2.08349" stroke="black" stroke-width="10"/>
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
               </svg></span></div>
-          <div class="month">08 <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
+          <div class="month">08&thinsp;/&thinsp; <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
             <path d="M1.91626 37.0835L36.9163 2.0835M69.0835 37.0835L34.0835 2.08349" stroke="black" stroke-width="10"/>
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
@@ -123,12 +123,12 @@ class Programm extends HTMLElement {
           </div>
         </div>
         <div class="datepicker sticky">
-          <div class="day">08 <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
+          <div class="day">08&thinsp;/&thinsp; <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
             <path d="M1.91626 37.0835L36.9163 2.0835M69.0835 37.0835L34.0835 2.08349" stroke="black" stroke-width="10"/>
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>
               </svg></span></div>
-          <div class="month">08 <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
+          <div class="month">08&thinsp;/&thinsp; <span class="sup"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
             <path d="M1.91626 37.0835L36.9163 2.0835M69.0835 37.0835L34.0835 2.08349" stroke="black" stroke-width="10"/>
             </svg></span><span class="sub"><svg xmlns="http://www.w3.org/2000/svg" width="71" height="39" viewBox="0 0 71 39" fill="none" class="arrow">
               <path d="M69.1672 2L34.1672 37M1.99998 2L37 37" stroke="black" stroke-width="10"/>

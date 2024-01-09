@@ -15,8 +15,8 @@ class ProgrammPrev extends HTMLElement {
           </div>
           <div class="happenings">
             <div class="datepicker">
-              <div class="day">06</div>
-              <div class="month">08</div>
+              <div class="day">06&thinsp;/&thinsp;</div>
+              <div class="month">08&thinsp;/&thinsp;</div>
               <div class="year">2023</div>
             </div>
             <div class="days">
@@ -32,8 +32,8 @@ class ProgrammPrev extends HTMLElement {
               </div>
             </div>
             <div class="datepicker sticky">
-              <div class="day">08</div>
-              <div class="month">08</div>
+              <div class="day">08&thinsp;/&thinsp;</div>
+              <div class="month">08&thinsp;/&thinsp;</div>
               <div class="year">2023</div>
             </div>
             <div class="days">

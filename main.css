@@ -736,8 +736,8 @@ ul.subfilters li{
 }
 
 .news{
-    width: calc(100% + var(--smallSpaceBorder)*2);
-    min-width: calc(100% + var(--smallSpaceBorder)*2);
+    width: calc(100% + var(--smallSpaceBorder));
+    min-width: calc(100% + var(--smallSpaceBorder));
     flex-direction: column;
     scroll-snap-align: start;
     display: none;
@@ -756,6 +756,11 @@ ul.subfilters li{
     to {
       opacity: 1;
     }
+}
+
+.news .date{
+    font-size: var(--smallFont);
+    padding: 0 var(--smallSpaceBorder);
 }
 
 .news .title{
@@ -821,8 +826,18 @@ ul.subfilters li{
     }
 
     .newsOuter .news {
-        width: calc(100%/6*2);
-        min-width: calc(100%/6*2);
+        width: calc(100%/6*2 + var(--smallSpaceBorder));
+        min-width: calc(100%/6*2 + var(--smallSpaceBorder));
+        padding: 0 calc(var(--smallSpaceBorder)/2);
+        border-right: var(--borderSize) solid var(--borderColor);
+    }
+
+    .newsOuter .news:first-of-type{
+        padding-left: 0;
+    }
+
+    .newsOuter .news:last-of-type{
+        border-right: none;
     }
 
     .newsOuter .news.active, .newsOuter .news.active ~ .news:nth-of-type(2), .newsOuter .news.active ~ .news:nth-of-type(3){
@@ -1151,6 +1166,7 @@ form input[type=submit] {
 .downloadWrap .link{
     font-size: var(--standartFont);
     font-weight: normal;
+    text-transform: uppercase;
 }
 
 @media screen and (min-width: 1000px){
@@ -1287,7 +1303,7 @@ button.weitere{
     z-index: 1;
     padding: var(--smallSpace) var(--smallSpaceBorder);
     margin-left: calc(var(--smallSpaceBorder)*-1);
-    gap: var(--smallSpace);
+   /*gap: var(--smallSpace);*/
 }
 
 /*.happenings .datepicker .day, .happenings .datepicker .month{
@@ -1388,7 +1404,7 @@ button.weitere{
 }
 
 .days .eventWrap.active:last-child{
-    border-bottom: none;
+   /* border-bottom: none; */
 }
 
 .days:last-child .eventWrap.active:last-child{
@@ -2037,6 +2053,10 @@ button.weitere{
     height: auto;
 }
 
+.bereiche .bereich .link{
+    text-transform: uppercase;
+}
+
 .bereiche .bereich .link::before {
     content: var(--intern);
     padding-right: 5px;
@@ -2106,16 +2126,38 @@ button.weitere{
 /*Werkstatt*/
 .werkstattMaschine .maschine.active{
     position: relative;
+    padding: var(--smallSpace) 0;
+    justify-content: space-between !important;
 }
 
 .werkstattMaschine .maschine.active .tickets{
     display: flex;
-    position: absolute;
     width: auto;
     bottom: var(--mediumSpace);
     line-height: 2.15em;
 }
 
+.werkstattMaschine .maschine.active .event{
+    font-size: var(--mediumSmallFont);
+    font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: bold;
+    line-height: 1.15em;
+    width: auto;
+}
+
+@media screen and (min-width: 1000px){
+    .werkstattMaschine .maschine.active:first-of-type{
+        padding-top: 0;
+    }
+
+    .werkstattMaschine.list .happenings{
+        margin: 0;
+    }
+
+    .werkstattMaschine.list .happenings .days{
+        padding-left: 0;
+    }
+}
 /*Menü Print*/
 @media print {
     header, nav, .openingHours, .textblock, .imageGallery, .einleitung, h1, .filters, footer, .programFilter{

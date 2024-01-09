@@ -88,22 +88,61 @@ function init() {
 	//camera.position.z = 100;
 	//camera.position.x = 50;
 
-	var light = new THREE.AmbientLight(0xffffff, 3);
-	scene.add(light);
+	var ambientLight = new THREE.AmbientLight( '#ffffff', 2 );
+    scene.add( ambientLight );
+
+	var light = new THREE.DirectionalLight( '#ffffff', 1.5 );
+    light.position.set( 1, 1, 1 );
+    scene.add( light );
 
 	dynamo = new GLTFLoader();
 
 	// Load a glTF resource
 	dynamo.load(
-		'./models/areal.gltf',
+		'./models/dynamo.gltf',
 		// called when the resource is loaded
 		function ( gltf ) {
-			gltf.scene.children[3].material.opacity = 0.3;
-			gltf.scene.children[3].material.transparent = true;
-			gltf.scene.children[3].material.smoothShading = true;
-			gltf.scene.children[1].material.opacity = 1.0;
+			//OUTLINES
+			gltf.scene.children[0].material.opacity = 1;
+			gltf.scene.children[0].material.color.set(0xffffff);
+			gltf.scene.children[0].material.transparent = true;
+			gltf.scene.children[0].material.smoothShading = true;
+
+			//METALLI
+			gltf.scene.children[1].material.opacity = 1;
+			gltf.scene.children[1].material.color.set(0x4dff00);
 			gltf.scene.children[1].material.transparent = true;
 			gltf.scene.children[1].material.smoothShading = true;
+
+			//AREAL
+			gltf.scene.children[2].material.opacity = 0.75;
+			gltf.scene.children[2].material.color.set(0xc7c7c7);
+			gltf.scene.children[2].material.transparent = true;
+			gltf.scene.children[2].material.smoothShading = true;
+			gltf.scene.children[2].material.forceSinglePass = true;
+
+			//OUTLINES MEDIEN
+			gltf.scene.children[3].material.opacity = 1;
+			gltf.scene.children[3].material.color.set(0xffffff);
+			gltf.scene.children[3].material.transparent = true;
+			gltf.scene.children[3].material.smoothShading = true;
+			gltf.scene.children[3].material.forceSinglePass = true;
+
+			//FLUSS
+			gltf.scene.children[4].material.opacity = 1;
+			gltf.scene.children[4].material.color.set(0xffffff);
+			gltf.scene.children[4].material.transparent = true;
+			gltf.scene.children[4].material.smoothShading = true;
+
+			//HÄUSER
+			gltf.scene.children[5].material.transparent = true;
+			gltf.scene.children[5].material.opacity = 0.5;
+			//gltf.scene.children[5].material.color.set(0x000000);
+			//gltf.scene.children[5].material.depthWrite = false;
+			//gltf.scene.children[5].material.depthFunc = THREE.AlwaysDepth;
+			gltf.scene.children[5].material.forceSinglePass = true;
+			gltf.scene.children[5].material.side = THREE.DoubleSide;
+			gltf.scene.children[5].material.smoothShading = true;
 
 			scene.add( gltf.scene );
 		},
@@ -146,21 +185,6 @@ function init() {
 	label21.rotateY( 0.1047197551 );
 
 	scene.add( label13, label15, label17, label19, label21 );
-
-	//const haus15 = document.createElement( 'div' );
-	//haus15.className = 'hausnummer';
-	//haus15.textContent = 'HAUS 15';
-	//haus15.style.backgroundColor = 'transparent';
-	//haus15.style.color = "#00ff1b";
-	//haus15.style.fontWeight = "bold";
-	//haus15.style.fontFamily = "'Helvetice Neue Bold', Helvetica, Arial, sans-serif";
-	//haus15.style.fontSize = "0.1em";
-
-	//const haus15Label = new CSS3DObject( haus15 );
-	//haus15Label.position.set( 0, 0, 0 );
-	//scene.add( haus15Label );
-
-	//camera.lookAt(haus15);
 
 	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
 	renderer.setSize( window.innerWidth, window.innerHeight/2 );
