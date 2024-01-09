@@ -133,12 +133,13 @@ function init() {
 			gltf.scene.children[4].material.color.set(0xffffff);
 			gltf.scene.children[4].material.transparent = true;
 			gltf.scene.children[4].material.smoothShading = true;
+			gltf.scene.children[5].material.forceSinglePass = true;
 
 			//HÄUSER
 			gltf.scene.children[5].material.transparent = true;
 			gltf.scene.children[5].material.opacity = 0.5;
 			//gltf.scene.children[5].material.color.set(0x000000);
-			//gltf.scene.children[5].material.depthWrite = false;
+			gltf.scene.children[5].material.depthWrite = false;
 			//gltf.scene.children[5].material.depthFunc = THREE.AlwaysDepth;
 			gltf.scene.children[5].material.forceSinglePass = true;
 			gltf.scene.children[5].material.side = THREE.DoubleSide;
