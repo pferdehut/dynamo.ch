@@ -743,15 +743,10 @@ ul.subfilters li{
     /*display: none;*/
     height: 100%;
     padding: 0 calc(var(--smallSpaceBorder)/2);
-    border-right: var(--borderSize) solid var(--borderColor);
 }
 
     .newsOuter .news:first-of-type{
         padding-left: 0;
-    }
-
-    .newsOuter .news:last-of-type{
-        border-right: none;
     }
 
 .news.active{
@@ -805,14 +800,13 @@ ul.subfilters li{
     border: 3px solid var(--borderColor);
     border-radius: 100%;
     cursor: pointer;
-    padding: var(--smallSpace) calc(var(--smallSpace)/6*4);
+    padding: calc(var(--smallSpace)/6*4) calc(var(--smallSpace)/6*2);
     width: 0;
     height: 0;
-    
 }
 
 .newsNav .navDot.active{
-    padding: calc(var(--smallSpace));
+    padding: calc(var(--smallSpace)/6*4);
     background: var(--baseText);
 }
 
@@ -848,6 +842,14 @@ ul.subfilters li{
 
     .newsOuter .news .image {
         width: 100%;
+    }
+
+    .newsNav .navDot{
+        padding: var(--smallSpace) calc(var(--smallSpace)/6*4);
+    }
+    
+    .newsNav .navDot.active{
+        padding: calc(var(--smallSpace));
     }
 }
 
