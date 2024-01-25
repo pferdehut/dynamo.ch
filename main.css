@@ -958,6 +958,10 @@ form input[type=submit] {
         width: calc(100%/6*5);
         margin: 0;
     }
+
+    form input[type=submit] {
+        width: calc(100%/6*2.5 - var(--mediumSpace));
+    }
 }
 
 /*Team*/
@@ -1662,22 +1666,26 @@ button.weitere{
 }
 
 .kurs .tag .wrapTag::after, .kurs .tag .wrapTag::before{
-    color: var(--kurs);
+    color: var(--konzert);
 }
 
 .event h2::before, .event h2::after{
-    color: var(--kurs);
+    color: var(--konzert);
 }
 
-.event .open circle{
-    stroke: var(--kurs);
-    fill: none;
-    filter: invert(1);
+/*.event .open circle{
+    stroke: var(--konzert) !important;
+    fill: none !important;
+    filter: invert(1) !important;
 }
 
 .event .open line, .event .plus line{
-    stroke: var(--kurs);
-    filter: invert(1);
+    stroke: var(--konzert) !important;
+    filter: invert(1) !important;
+}*/
+
+.kurs h2::before, .kurs h2::after{
+    color: var(--kurs);
 }
 
 /*Reservieren*/
