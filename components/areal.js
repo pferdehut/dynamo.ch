@@ -68,6 +68,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
+import { VertexNormalsHelper } from "three/addons/helpers/VertexNormalsHelper.js";
 
 let scene, camera, renderer, labelRenderer, controls, dynamo;
 const areal = document.getElementById('areal');
@@ -113,6 +114,7 @@ function init() {
 			gltf.scene.children[1].material.color.set(0x4dff00);
 			gltf.scene.children[1].material.transparent = true;
 			gltf.scene.children[1].material.smoothShading = true;
+			gltf.scene.children[1].material.emissive.set(0x4dff00);
 
 			//AREAL
 			gltf.scene.children[2].material.opacity = 0.75;
@@ -136,9 +138,9 @@ function init() {
 			gltf.scene.children[5].material.forceSinglePass = true;
 
 			//HÄUSER
-			gltf.scene.children[5].material.transparent = true;
-			gltf.scene.children[5].material.opacity = 0.5;
-			//gltf.scene.children[5].material.color.set(0x000000);
+			//gltf.scene.children[5].material.transparent = true;
+			//gltf.scene.children[5].material.opacity = 0.5;
+			gltf.scene.children[5].material.color.set(0x000000);
 			gltf.scene.children[5].material.depthWrite = false;
 			//gltf.scene.children[5].material.depthFunc = THREE.AlwaysDepth;
 			gltf.scene.children[5].material.forceSinglePass = true;

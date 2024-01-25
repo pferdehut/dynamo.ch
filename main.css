@@ -311,6 +311,17 @@ header .menu .plus.active svg{
     transform: rotate(45deg);
 }
 
+header .menu .open circle{
+    stroke: black;
+    fill: none;
+    filter: invert(1);
+}
+
+header .menu .plus line, header .menu .open line{
+    stroke: black;
+    filter: invert(1);
+}
+
 nav{
     position: fixed;
     width: 100%;
@@ -1654,6 +1665,21 @@ button.weitere{
     color: var(--kurs);
 }
 
+.event h2::before, .event h2::after{
+    color: var(--kurs);
+}
+
+.event .open circle{
+    stroke: var(--kurs);
+    fill: none;
+    filter: invert(1);
+}
+
+.event .open line, .event .plus line{
+    stroke: var(--kurs);
+    filter: invert(1);
+}
+
 /*Reservieren*/
 .reservieren h1{
     margin-bottom: var(--smallSpace);
@@ -1770,6 +1796,7 @@ button.weitere{
     font-size: 1.5em;
     content: "[";
     color: var(--secondaryColor);
+    filter: invert(1);
 }
 
 .quicklinks li::after{
@@ -1778,6 +1805,7 @@ button.weitere{
     font-size: 1.5em;
     content: "]";
     color: var(--secondaryColor);
+    filter: invert(1);
 }
 
 .quicklinks li a{
