@@ -158,6 +158,35 @@ a{
     color: var(--baseText);
 }
 
+a:hover{
+    color: var(--secondaryColor);
+}
+
+.eventWrap .image{
+    background-color: var(--baseColor);
+    position: relative;
+}
+
+.eventWrap .image::before{
+    content: '';
+    background-color: var(--secondaryColor);
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.eventWrap .image a img{
+    position: relative;
+    z-index: 10;
+}
+
+.eventWrap .image a:hover img{
+    mix-blend-mode: luminosity;
+}
+
 b{
     font-family: "Helvetica Neue Bold", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: bold;   
