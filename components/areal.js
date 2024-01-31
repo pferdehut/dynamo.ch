@@ -100,7 +100,7 @@ function init() {
 
 	// Load a glTF resource
 	dynamo.load(
-		'./models/outlines.gltf',
+		'./models/Outlines.gltf',
 		// called when the resource is loaded
 		function ( gltf ) {
 			//OUTLINES
