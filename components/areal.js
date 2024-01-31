@@ -104,16 +104,28 @@ function init() {
 		// called when the resource is loaded
 		function ( gltf ) {
 			//OUTLINES
-			gltf.scene.children[0].material.opacity = 0.5;
-			gltf.scene.children[0].material.color.set(0x000000);
-			gltf.scene.children[0].material.transparent = true;
-			gltf.scene.children[0].material.smoothShading = true;
+			gltf.scene.children[1].material.opacity = 1;
+			gltf.scene.children[1].material.color.set(0x000000);
+			gltf.scene.children[1].material.transparent = true;
+			gltf.scene.children[1].material.smoothShading = true;
 
-			for (let i = 3; i < gltf.scene.children.length; i++) {
+			gltf.scene.children[2].material.opacity = 1;
+			gltf.scene.children[2].material.color.set(0xE5E4E2);
+			gltf.scene.children[2].material.forceSinglePass = true;
+			gltf.scene.children[2].material.transparent = true;
+			gltf.scene.children[2].material.smoothShading = true;
+
+			gltf.scene.children[3].material.opacity = 1;
+			gltf.scene.children[3].material.color.set(0x000000);
+			gltf.scene.children[3].material.transparent = true;
+			gltf.scene.children[3].material.smoothShading = true;
+
+			for (let i = 4; i < gltf.scene.children.length; i++) {
 				gltf.scene.children[i].material.color.set(0x4dff00);
 
 				//gltf.scene.children[i].material.transmission = 0.85;
-				gltf.scene.children[i].material.opacity = 0.4;
+				gltf.scene.children[i].material.opacity = 0.25;
+				gltf.scene.children[i].material.format = THREE.RGBAFormat;
 
 				//gltf.scene.children[i].material.metalness = 0.1;
 
@@ -122,12 +134,14 @@ function init() {
 				//gltf.scene.children[i].material.specularIntensity = 1;
 				//gltf.scene.children[i].material.specularColor.set(0x000000);
 				
-				gltf.scene.children[i].material.alphaHash = true;
-				gltf.scene.children[i].material.alphaHashScale = 0.9;
+				//gltf.scene.children[i].material.alphaHash = true;
+				//gltf.scene.children[i].material.alphaHashScale = 0.9;
 				
 
-				gltf.scene.children[i].material.side = THREE.DoubleSide;
+				//gltf.scene.children[i].material.side = THREE.DoubleSide;
 				gltf.scene.children[i].material.transparent = true;
+
+				gltf.scene.children[i].material.depthWrite = false;
 				//gltf.scene.children[i].material.smoothShading = true;
 			}
 
@@ -222,6 +236,7 @@ function init() {
 	renderer.setSize(window.innerWidth, window.innerHeight / 2);
 	renderer.setClearColor(0xffffff);
 	renderer.shadowMap.enabled = true;
+	renderer.autoClear=false;
 	areal.appendChild(renderer.domElement);
 
 	labelRenderer = new CSS3DRenderer();
