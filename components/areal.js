@@ -1,225 +1,86 @@
 const arealTemplate = document.createElement('template');
 
+arealTemplate.innerHTML = `
+<div class="component lage active">
+    <h2>Lageplan</h2>
+    <div id="areal">
+        <div class="hausnummer"></div>
+        <div class="hausnummer"></div>
+        <div class="hausnummer"></div>
+        <div class="hausnummer"></div>
+        <div class="hausnummer"></div>
+    </div>
+    <div id="arealDescription"></div>
+</div>
+`;
+
 class Areal extends HTMLElement {
     constructor() {
         super();
     }
 
     connectedCallback() {
-        this.innerHTML = `
-        <div class="component lage active">
-            <h2>Lageplan</h2>
-            <div id="areal">
-                <div class="hausnummer"></div>
-                <div class="hausnummer"></div>
-                <div class="hausnummer"></div>
-                <div class="hausnummer"></div>
-                <div class="hausnummer"></div>
-            </div>
-            <div id="arealDescription">
-            </div>
-            </div>
-        </div>
-        `;
+        this.appendChild(arealTemplate.content.cloneNode(true));
     }
 }
 
 customElements.define('areal-component', Areal);
 
 import * as THREE from 'three';
-
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 let scene, camera, renderer, labelRenderer, controls, dynamo;
-let parameters;
+let activeRoomID = 11; // Example initial active room ID
+
+let gltfScene; // Global variable to store the loaded scene
+let materials = {}; // Object to store materials by some identifier
+let originalMaterials = {}; 
+
 const areal = document.getElementById('areal');
 const perspective = 40;
 const fov = 25;
 
-init();
-animate();
+const gui = new GUI({ autoPlace: false });
+let guiFolders = {}; // Stores references to folders
+let guiControls = {}; // Stores references to controls within their folders
+
+const rooms = {
+	buro: { id: 0, folder: "21", name: "Büros" },
+	saal: { id: 11, folder: "21", name: "Saal" },
+	tanzdach: { id: 16, folder: "21", name: "Tanzdach" },
+	probe: { id: 14, folder: "21", name: "Probebühne" },
+	werk21: { id: 13, folder: "21", name: "Werk 21" },
+	foto: { id: 0, folder: "21", name: "Werkbereich (Fotolabor)" },
+	kermamik: { id: 0, folder: "21", name: "Werkbereich (Kermik)" },
+	textil: { id: 12, folder: "21", name: "Werkbereich (Textil)" },
+	sitzung: { id: 8, folder: "19", name: "Sitzungsräume" },
+	restaurant: { id: 3, folder: "19", name: "Restaurant (Chuchi am Wasser)" },
+	prototyping: { id: 7, folder: "17", name: "Prototyping Raum" },
+	digital: { id: 4, folder: "17", name: "Werkbereich (Digital)" },
+	metall: { id: 6, folder: "15", name: "Werkbereich (Metall/Schmuck)" },
+	projekt: { id: 5, folder: "13", name: "Projektraum" },
+	medien: { id: 5, folder: "13", name: "Werkbereich (Medien)" },
+
+};
 
 function init() {
     scene = new THREE.Scene();
-
     camera = new THREE.PerspectiveCamera(fov, window.innerWidth / (window.innerHeight / 2), 1, 10000);
+    camera.position.set(20, 15, perspective);
 
-    var ambientLight = new THREE.AmbientLight('#ffffff', 2);
+    const ambientLight = new THREE.AmbientLight('#ffffff', 2);
     scene.add(ambientLight);
 
-    var light = new THREE.DirectionalLight('#ffffff', 1.5);
+    const light = new THREE.DirectionalLight('#ffffff', 1.5);
     light.position.set(1, 1, 1);
     scene.add(light);
 
-    dynamo = new GLTFLoader();
-
-    function functionActive() {
-        console.log('Calling functionActive for active mesh');
-
-        // Find the active mesh using the custom property
-        const activeMesh = scene.children.find(child => child.userData.isActive);
-
-        if (activeMesh) {
-            console.log('Found active mesh:', activeMesh);
-            activeMesh.material.color.set(0x4dff00);
-            activeMesh.material.opacity = 1;
-        } else {
-            console.log('Active mesh not found.');
-        }
-    }
-
-    dynamo.load(
-        './models/Outlines.gltf',
-        function ( gltf ) {
-
-            console.log('Traversing scene:');
-            gltf.scene.traverse((node) => {
-                console.log(node);
-            });
-
-            gltf.scene.children[0].material.opacity = 1;
-            gltf.scene.children[0].material.color.set(0x000000);
-            gltf.scene.children[0].material.transparent = true;
-            gltf.scene.children[0].material.smoothShading = true;
-
-            gltf.scene.children[2].material.opacity = 1;
-            gltf.scene.children[2].material.color.set(0x000000);
-            gltf.scene.children[2].material.transparent = true;
-            gltf.scene.children[2].material.smoothShading = true;
-
-            gltf.scene.children[1].material.opacity = 0.75;
-            gltf.scene.children[1].material.color.set(0xE5E4E2);
-            gltf.scene.children[1].material.transparent = true;
-            gltf.scene.children[1].material.smoothShading = true;
-
-            for (let i = 3; i < gltf.scene.children.length; i++) {
-                gltf.scene.children[i].material.color.set(0xE5E4E2);
-                gltf.scene.children[i].material.opacity = 0.5;
-                gltf.scene.children[i].material.transparent = true;
-                gltf.scene.children[i].material.depthWrite = false;
-            }
-
-            //gltf.scene.children[11].material.alphaHash = true;
-			//gltf.scene.children[11].material.color.set(0x4dff00);
-			//gltf.scene.children[11].material.opacity = 1;
-
-			function handleButtonClick(materialIndex) {
-				console.log('Changing color for material at index:', materialIndex);
-
-				for (let i = 3; i < gltf.scene.children.length; i++) {
-					gltf.scene.children[i].material.color.set(0xE5E4E2);
-					gltf.scene.children[i].material.opacity = 0.5;
-					gltf.scene.children[i].material.transparent = true;
-					gltf.scene.children[i].material.depthWrite = false;
-				}
-
-				if (materialIndex >= 0 && materialIndex < gltf.scene.children.length) {
-					const material = gltf.scene.children[materialIndex].material;
-			
-					// Set the new color for the material
-					material.color.set(0x4dff00);
-					material.opacity = 1;
-				} else {
-					console.log('Material at index', materialIndex, 'not found.');
-				}
-			}
-
-			const params = {
-				buro: () => handleButtonClick(0),
-				saal: () => handleButtonClick(11),
-				tanzdach: () => handleButtonClick(16),
-				probe: () => handleButtonClick(14),
-				werk: () => handleButtonClick(13),
-				foto: () => handleButtonClick(0),
-				keramik: () => handleButtonClick(0),
-				textil: () => handleButtonClick(12),
-				sitzung: () => handleButtonClick(8),
-				restaurant: () => handleButtonClick(3),
-				digital: () => handleButtonClick(4),
-				prototyping: () => handleButtonClick(7),
-				metall: () => handleButtonClick(6),
-				medien: () => handleButtonClick(5),
-			};
-
-			var gui = new GUI({ autoPlace: false });
-		
-			var first = gui.addFolder("21");
-			first.add(params, "buro").name("Büros");
-			first.add(params, "saal").name("Saal");
-			first.add(params, "tanzdach").name("Tanzdach");
-			first.add(params, "probe").name("Probebühne");
-			first.add(params, "werk").name("Werk 21");
-			first.add(params, "foto").name("Werkbereich (Fotolabor)");
-			first.add(params, "keramik").name("Werkbereich (Keramik)");
-			first.add(params, "textil").name("Werkbereich (Textil)");
-		
-			var second = gui.addFolder("19");
-			second.add(params, "sitzung").name("Sitzungsräume");
-			second.add(params, "restaurant").name("Restaurant 'Chuchi am Wasser'");
-		
-			var third = gui.addFolder("17");
-			third.add(params, "digital").name("Werkbereich (Digital)");
-			third.add(params, "prototyping").name("Prototyping Raum");
-		
-			var fourth = gui.addFolder("15");
-			fourth.add(params, "metall").name("Werkbereich (Metall/Schmuck)");
-		
-			var sixth = gui.addFolder("13");
-			sixth.add(params, "medien").name("Werkbereich (Medien)");
-			sixth.add(params, "medien").name("Projektraum");
-		
-			var customContainer = document.getElementById('arealDescription');
-			customContainer.appendChild(gui.domElement);
-			handleButtonClick(11); 
-
-			scene.add( gltf.scene );
-        },
-        function ( xhr ) {
-            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-        },
-        function ( error ) {
-            console.log( 'An error happened' );
-        }
-    );
-
-    const nummern = document.getElementsByClassName('hausnummer');
-    const labels = [13, 15, 17, 19, 21];
-
-    for (let i = 0; i < nummern.length; i++) {
-        nummern[i].textContent = "HAUS " + labels[i];
-        nummern[i].style.backgroundColor = 'transparent';
-        nummern[i].style.color = "#00ff1b";
-        nummern[i].style.fontWeight = "bold";
-        nummern[i].style.fontFamily = "'Helvetice Neue Bold', Helvetica, Arial, sans-serif";
-        nummern[i].style.fontSize = "0.05em";
-    }
-
-    const label13 = new CSS3DObject(nummern[0]);
-    const label15 = new CSS3DObject(nummern[1]);
-    const label17 = new CSS3DObject(nummern[2]);
-    const label19 = new CSS3DObject(nummern[3]);
-    const label21 = new CSS3DObject(nummern[4]);
-
-    label13.position.set(13, 2, -1.2);
-    label13.rotateY(- Math.PI / 3);
-    label15.position.set(8, 1.75, 1.8);
-    label15.rotateY(0.0872664626);
-    label17.position.set(5, 4.5, -2.25);
-    label17.rotateY(0.0872664626);
-    label19.position.set(2.25, 3.5, 1.9);
-    label21.position.set(-6.5, 7.25, 0);
-    label21.rotateY(0.1047197551);
-
-    scene.add(label13, label15, label17, label19, label21);
-
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight / 2);
-    renderer.setClearColor(0xffffff);
-    renderer.shadowMap.enabled = true;
-    renderer.autoClear = false;
+    renderer.setClearColor(0xffffff, 0);
     areal.appendChild(renderer.domElement);
 
     labelRenderer = new CSS3DRenderer();
@@ -229,32 +90,138 @@ function init() {
     areal.appendChild(labelRenderer.domElement);
 
     controls = new OrbitControls(camera, labelRenderer.domElement);
-    var obj = {
-        add: function() {
-            alert("clicked!")
+
+    dynamo = new GLTFLoader();
+
+	dynamo.load('./models/Outlines.gltf', function (gltf) {
+		gltfScene = gltf.scene;
+		scene.add(gltfScene);
+
+		gltf.scene.children[0].material.opacity = 1;
+		gltf.scene.children[0].material.color.set(0x000000);
+		gltf.scene.children[0].material.transparent = true;
+		gltf.scene.children[0].material.smoothShading = true;
+
+		gltf.scene.children[2].material.opacity = 1;
+		gltf.scene.children[2].material.color.set(0x000000);
+		gltf.scene.children[2].material.transparent = true;
+		gltf.scene.children[2].material.smoothShading = true;
+
+		gltf.scene.children[1].material.opacity = 0.75;
+		gltf.scene.children[1].material.color.set(0xE5E4E2);
+		gltf.scene.children[1].material.transparent = true;
+		gltf.scene.children[1].material.smoothShading = true;
+
+		for (let i = 3; i < gltf.scene.children.length; i++) {
+			gltf.scene.children[i].material.color.set(0xE5E4E2);
+			gltf.scene.children[i].material.opacity = 0.5;
+			gltf.scene.children[i].material.transparent = true;
+			gltf.scene.children[i].material.depthWrite = false;
+		}
+
+		gltf.scene.traverse((node) => {
+			if (node.isMesh) {
+				materials[node.name] = node.material;
+				// Store original material properties
+				originalMaterials[node.name] = {
+					color: node.material.color.clone(), // Clone the color so changes don't affect the stored value
+					opacity: node.material.opacity // Assuming opacity might also be changed
+				};
+			}
+		});
+
+	}, undefined, function (error) {
+		console.error('An error happened during loading:', error);
+	});
+
+    setupGUI();
+    window.addEventListener('resize', onWindowResize, false);
+
+    animate();
+}
+
+function handleButtonClick(materialIndex) {
+    console.log('Changing color for material at index:', materialIndex);
+
+    const materialKeyToUpdate = Object.keys(materials)[materialIndex]; // Get the key for the material to update
+    Object.keys(materials).forEach(key => {
+        const material = materials[key];
+        if (key === materialKeyToUpdate) {
+            // Update the selected material
+            material.color.set(0x4dff00); // New color
+            material.opacity = 1; // New opacity
+        } else {
+            // Reset other materials to their original state
+            if (originalMaterials[key]) {
+                material.color.copy(originalMaterials[key].color); // Reset color
+                material.opacity = originalMaterials[key].opacity; // Reset opacity
+            }
         }
-    };
+    });
+}
 
 
-    camera.position.set(20, 15, perspective);
-    controls.update();
+function setupGUI() {
 
-    window.addEventListener('resize', onWindowResize);
+	Object.values(rooms).forEach(room => {
+		const folder = guiFolders[room.folder] || gui.addFolder(room.folder);
+		guiFolders[room.folder] = folder; // Ensure the folder is stored if newly created
+		
+		const control = folder.add({[room.name]: () => setActiveRoom(room.id)}, room.name).name(room.name);
+		if (!guiControls[room.folder]) guiControls[room.folder] = {};
+		guiControls[room.folder][room.name] = control;
+	});	
+
+    const customContainer = document.getElementById('arealDescription');
+    customContainer.appendChild(gui.domElement);
+}
+
+function setActiveRoom(roomId) {
+    const roomEntry = Object.entries(rooms).find(([_, room]) => room.id === roomId);
+    if (roomEntry) {
+        const [roomName, roomDetails] = roomEntry;
+        console.log(`Activating room: ${roomId}`);
+		handleButtonClick(roomId);
+        // Additional logic to activate the room in your application...
+
+        highlightActiveRoomInGUI(roomDetails.folder, roomId);
+    } else {
+        console.warn(`Room with ID ${roomId} not found.`);
+    }
+}
+let lastActiveControl = null; // Store the last active control for efficient class removal
+
+function highlightActiveRoomInGUI(folderName, roomId) {
+    // Remove 'active-control' class from the last active control
+    if (lastActiveControl) {
+        lastActiveControl.classList.remove('active-control');
+    }
+
+    // Find the new active control using roomId and folderName
+    const roomEntry = Object.entries(rooms).find(([_, room]) => room.id === roomId && room.folder === folderName);
+    if (roomEntry) {
+        const [roomName, roomDetails] = roomEntry;
+        const control = guiControls[roomDetails.folder][roomDetails.name];
+        if (control && control.domElement) {
+            const domElement = control.domElement; // Accessing the parent element for styling
+            domElement.classList.add('active-control');
+            lastActiveControl = domElement; // Update last active control reference
+        }
+    }
 }
 
 function onWindowResize() {
-    renderer.setSize(window.innerWidth, window.innerHeight / 2);
-    labelRenderer.setSize(window.innerWidth, window.innerHeight / 2);
-
     camera.aspect = window.innerWidth / (window.innerHeight / 2);
     camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight / 2);
+    labelRenderer.setSize(window.innerWidth, window.innerHeight / 2);
 }
 
 function animate() {
     requestAnimationFrame(animate);
-
     renderer.render(scene, camera);
     labelRenderer.render(scene, camera);
-
     controls.update();
 }
+
+init();

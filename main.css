@@ -2221,6 +2221,10 @@ button.weitere{
     text-align: left;
 }
 
+.lil-gui .active-control button{
+    color: var(--secondaryColor);
+}
+
 .lil-gui button:hover{
     background: var(--baseColor);
     color: var(--secondaryColor);
