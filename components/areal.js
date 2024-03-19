@@ -9,6 +9,7 @@ arealTemplate.innerHTML = `
         <div class="hausnummer"></div>
         <div class="hausnummer"></div>
         <div class="hausnummer"></div>
+        <button id="barrierefrei" class="show_arrows"><img src="../img/barrierefreiheit.png" alt="Barrierefreiheit"></button>
     </div>
     <div id="arealDescription"></div>
 </div>
@@ -38,6 +39,7 @@ let activeRoomID = 11; // Example initial active room ID
 let gltfScene; // Global variable to store the loaded scene
 let materials = {}; // Object to store materials by some identifier
 let originalMaterials = {}; 
+let isArrowColorToggled = false;
 
 const areal = document.getElementById('areal');
 const perspective = 40;
@@ -48,27 +50,26 @@ let guiFolders = {}; // Stores references to folders
 let guiControls = {}; // Stores references to controls within their folders
 
 const rooms = {
-	buro: { id: 0, folder: "21", name: "Büros" },
-	saal: { id: 11, folder: "21", name: "Saal" },
-	tanzdach: { id: 16, folder: "21", name: "Tanzdach" },
-	probe: { id: 14, folder: "21", name: "Probebühne" },
-	werk21: { id: 13, folder: "21", name: "Werk 21" },
+	buro: { id: 1, folder: "21", name: "Büros" },
+	saal: { id: 8, folder: "21", name: "Saal" },
+	tanzdach: { id: 10, folder: "21", name: "Tanzdach" },
+	probe: { id: 6, folder: "21", name: "Probebühne" },
+	werk21: { id: 0, folder: "21", name: "Werk 21" },
 	foto: { id: 0, folder: "21", name: "Werkbereich (Fotolabor)" },
-	kermamik: { id: 0, folder: "21", name: "Werkbereich (Kermik)" },
-	textil: { id: 12, folder: "21", name: "Werkbereich (Textil)" },
-	sitzung: { id: 8, folder: "19", name: "Sitzungsräume" },
-	restaurant: { id: 3, folder: "19", name: "Restaurant (Chuchi am Wasser)" },
+	kermamik: { id: 12, folder: "21", name: "Werkbereich (Kermik)" },
+	textil: { id: 11, folder: "21", name: "Werkbereich (Textil)" },
+	sitzung: { id: 9, folder: "19", name: "Sitzungsräume" },
+	restaurant: { id: 2, folder: "19", name: "Restaurant (Chuchi am Wasser)" },
 	prototyping: { id: 7, folder: "17", name: "Prototyping Raum" },
-	digital: { id: 4, folder: "17", name: "Werkbereich (Digital)" },
-	metall: { id: 6, folder: "15", name: "Werkbereich (Metall/Schmuck)" },
-	projekt: { id: 5, folder: "13", name: "Projektraum" },
-	medien: { id: 5, folder: "13", name: "Werkbereich (Medien)" },
-
+	digital: { id: 3, folder: "17", name: "Werkbereich (Digital)" },
+	metall: { id: 5, folder: "15", name: "Werkbereich (Metall/Schmuck)" },
+	projekt: { id: 13, folder: "13", name: "Projektraum" },
+	medien: { id: 4, folder: "13", name: "Werkbereich (Medien)" },
 };
 
 function init() {
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(fov, window.innerWidth / (window.innerHeight / 2), 1, 10000);
+    camera = new THREE.PerspectiveCamera(fov, document.body.clientWidth / (window.innerHeight / 2), 1, 10000);
     camera.position.set(20, 15, perspective);
 
     const ambientLight = new THREE.AmbientLight('#ffffff', 2);
@@ -79,12 +80,12 @@ function init() {
     scene.add(light);
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight / 2);
+    renderer.setSize(document.body.clientWidth, window.innerHeight / 2);
     renderer.setClearColor(0xffffff, 0);
     areal.appendChild(renderer.domElement);
 
     labelRenderer = new CSS3DRenderer();
-    labelRenderer.setSize(window.innerWidth, window.innerHeight / 2);
+    labelRenderer.setSize(document.body.clientWidth, window.innerHeight / 2);
     labelRenderer.domElement.style.position = 'absolute';
     labelRenderer.domElement.style.top = '0px';
     areal.appendChild(labelRenderer.domElement);
@@ -93,31 +94,31 @@ function init() {
 
     dynamo = new GLTFLoader();
 
-	dynamo.load('./models/Outlines.gltf', function (gltf) {
+	dynamo.load('./models/Outlines_new.gltf', function (gltf) {
 		gltfScene = gltf.scene;
 		scene.add(gltfScene);
 
-		gltf.scene.children[0].material.opacity = 1;
-		gltf.scene.children[0].material.color.set(0x000000);
-		gltf.scene.children[0].material.transparent = true;
-		gltf.scene.children[0].material.smoothShading = true;
-
-		gltf.scene.children[2].material.opacity = 1;
-		gltf.scene.children[2].material.color.set(0x000000);
-		gltf.scene.children[2].material.transparent = true;
-		gltf.scene.children[2].material.smoothShading = true;
-
-		gltf.scene.children[1].material.opacity = 0.75;
-		gltf.scene.children[1].material.color.set(0xE5E4E2);
-		gltf.scene.children[1].material.transparent = true;
-		gltf.scene.children[1].material.smoothShading = true;
-
-		for (let i = 3; i < gltf.scene.children.length; i++) {
-			gltf.scene.children[i].material.color.set(0xE5E4E2);
-			gltf.scene.children[i].material.opacity = 0.5;
+		for (let i = 0; i < gltf.scene.children.length - 3; i++) {
+			gltf.scene.children[i].material.color.set(0xFFFFFF);
+			gltf.scene.children[i].material.opacity = 0.75;
 			gltf.scene.children[i].material.transparent = true;
-			gltf.scene.children[i].material.depthWrite = false;
+            gltf.scene.children[i].material.forceSingePlass = true;
+            gltf.scene.children[i].material.side = THREE.FrontSide;
 		}
+
+        gltf.scene.children[14].material.opacity = 1;
+		gltf.scene.children[14].material.color.set(0x000000);
+		gltf.scene.children[14].material.transparent = true;
+		gltf.scene.children[14].material.smoothShading = true;
+
+		gltf.scene.children[15].material.opacity = 0.75;
+		gltf.scene.children[15].material.color.set(0xffffff);
+		gltf.scene.children[15].material.transparent = true;
+		gltf.scene.children[15].material.smoothShading = true;
+
+		gltf.scene.children[17].material.color.set(0xb200ff);
+        gltf.scene.children[17].visible = false;
+		gltf.scene.children[17].material.transparent = true;
 
 		gltf.scene.traverse((node) => {
 			if (node.isMesh) {
@@ -125,18 +126,21 @@ function init() {
 				// Store original material properties
 				originalMaterials[node.name] = {
 					color: node.material.color.clone(), // Clone the color so changes don't affect the stored value
-					opacity: node.material.opacity // Assuming opacity might also be changed
+					opacity: node.material.opacity,
+                    forceSingePlass: node.material.forceSingePlass
 				};
 			}
 		});
+
+        
 
 	}, undefined, function (error) {
 		console.error('An error happened during loading:', error);
 	});
 
     setupGUI();
+    document.getElementById("barrierefrei").addEventListener("click", toggleArrows, false);
     window.addEventListener('resize', onWindowResize, false);
-
     animate();
 }
 
@@ -149,12 +153,14 @@ function handleButtonClick(materialIndex) {
         if (key === materialKeyToUpdate) {
             // Update the selected material
             material.color.set(0x4dff00); // New color
-            material.opacity = 1; // New opacity
+            material.opacity = 0.95; // New opacity
+            material.forceSingePlass = false;
         } else {
             // Reset other materials to their original state
             if (originalMaterials[key]) {
                 material.color.copy(originalMaterials[key].color); // Reset color
                 material.opacity = originalMaterials[key].opacity; // Reset opacity
+                material.forceSingePlass =  originalMaterials[key].forceSingePlass;
             }
         }
     });
@@ -210,11 +216,28 @@ function highlightActiveRoomInGUI(folderName, roomId) {
     }
 }
 
+// Toggle Pause
+function toggleArrows() {
+    gltfScene.traverse((child) => {
+        if (child.name === 'Arrows') {
+            // Toggle the color based on the current state
+            if (isArrowColorToggled) {
+                child.visible = false;
+            } else {
+                child.visible = true;
+            }
+        }
+    });
+
+    // Invert the toggle state
+    isArrowColorToggled = !isArrowColorToggled;
+}
+
 function onWindowResize() {
-    camera.aspect = window.innerWidth / (window.innerHeight / 2);
+    camera.aspect = document.body.clientWidth / (window.innerHeight / 2);
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight / 2);
-    labelRenderer.setSize(window.innerWidth, window.innerHeight / 2);
+    renderer.setSize(document.body.clientWidth, window.innerHeight / 2);
+    labelRenderer.setSize(document.body.clientWidth, window.innerHeight / 2);
 }
 
 function animate() {
