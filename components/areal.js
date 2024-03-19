@@ -20,9 +20,6 @@ class Areal extends HTMLElement {
         super();
     }
 
-    connectedCallback() {
-        this.appendChild(arealTemplate.content.cloneNode(true));
-    }
 }
 
 customElements.define('areal-component', Areal);
