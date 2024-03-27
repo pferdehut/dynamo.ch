@@ -4,11 +4,6 @@ arealTemplate.innerHTML = `
 <div class="component lage active">
     <h2>Lageplan</h2>
     <div id="areal">
-        <div class="hausnummer"></div>
-        <div class="hausnummer"></div>
-        <div class="hausnummer"></div>
-        <div class="hausnummer"></div>
-        <div class="hausnummer"></div>
         <button id="barrierefrei" class="show_arrows"><img src="../img/barrierefreiheit.png" alt="Barrierefreiheit"></button>
     </div>
     <div id="arealDescription"></div>
@@ -20,14 +15,19 @@ class Areal extends HTMLElement {
         super();
     }
 
+    connectedCallback() {
+        this.appendChild(arealTemplate.content.cloneNode(true));
+    }
 }
 
 customElements.define('areal-component', Areal);
 
 import * as THREE from 'three';
+import { MathUtils } from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 let scene, camera, renderer, labelRenderer, controls, dynamo;
@@ -53,7 +53,7 @@ const rooms = {
 	probe: { id: 6, folder: "21", name: "Probebühne" },
 	werk21: { id: 0, folder: "21", name: "Werk 21" },
 	foto: { id: 0, folder: "21", name: "Werkbereich (Fotolabor)" },
-	kermamik: { id: 12, folder: "21", name: "Werkbereich (Kermik)" },
+	kermamik: { id: 12, folder: "21", name: "Werkbereich (Keramik)" },
 	textil: { id: 11, folder: "21", name: "Werkbereich (Textil)" },
 	sitzung: { id: 9, folder: "19", name: "Sitzungsräume" },
 	restaurant: { id: 2, folder: "19", name: "Restaurant (Chuchi am Wasser)" },
@@ -69,25 +69,37 @@ function init() {
     camera = new THREE.PerspectiveCamera(fov, document.body.clientWidth / (window.innerHeight / 2), 1, 10000);
     camera.position.set(20, 15, perspective);
 
-    const ambientLight = new THREE.AmbientLight('#ffffff', 2);
-    scene.add(ambientLight);
+    const light = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    light.position.set(15, 10, 8);
+    scene.add( light );
 
-    const light = new THREE.DirectionalLight('#ffffff', 1.5);
-    light.position.set(1, 1, 1);
-    scene.add(light);
+    const lightBottom = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    lightBottom.position.set(15, -2, 8);
+    scene.add( lightBottom );
 
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(document.body.clientWidth, window.innerHeight / 2);
-    renderer.setClearColor(0xffffff, 0);
-    areal.appendChild(renderer.domElement);
+    const lightLeft = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    lightLeft.position.set(-10, 10, 8);
+    scene.add( lightLeft );
 
-    labelRenderer = new CSS3DRenderer();
-    labelRenderer.setSize(document.body.clientWidth, window.innerHeight / 2);
-    labelRenderer.domElement.style.position = 'absolute';
-    labelRenderer.domElement.style.top = '0px';
-    areal.appendChild(labelRenderer.domElement);
+    const lightLeftBottom = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    lightLeftBottom.position.set(-15, -2, 8);
+    scene.add( lightLeftBottom );
 
-    controls = new OrbitControls(camera, labelRenderer.domElement);
+    const lightBackLeft = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    lightBackLeft.position.set(-15, 10, -8);
+    scene.add( lightBackLeft );
+
+    const lightBackLeftBottom = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    lightBackLeftBottom.position.set(-15, -2, -8);
+    scene.add( lightBackLeftBottom );
+
+    const lightBackRight = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    lightBackRight.position.set(15, 10, -8);
+    scene.add( lightBackRight );
+
+    const lightBackRightBottom = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    lightBackRightBottom.position.set(15, -2, -8);
+    scene.add( lightBackRightBottom );
 
     dynamo = new GLTFLoader();
 
@@ -99,8 +111,9 @@ function init() {
 			gltf.scene.children[i].material.color.set(0xFFFFFF);
 			gltf.scene.children[i].material.opacity = 0.75;
 			gltf.scene.children[i].material.transparent = true;
-            gltf.scene.children[i].material.forceSingePlass = true;
-            gltf.scene.children[i].material.side = THREE.FrontSide;
+            gltf.scene.children[i].material.smoothShading = true;
+            gltf.scene.children[i].material.side = THREE.BackSide;
+            gltf.scene.children[i].geometry.computeVertexNormals();
 		}
 
         gltf.scene.children[14].material.opacity = 1;
@@ -108,14 +121,19 @@ function init() {
 		gltf.scene.children[14].material.transparent = true;
 		gltf.scene.children[14].material.smoothShading = true;
 
-		gltf.scene.children[15].material.opacity = 0.75;
-		gltf.scene.children[15].material.color.set(0xffffff);
+		gltf.scene.children[15].material.opacity = 0.9;
+		gltf.scene.children[15].material.color.set(0xD3D3D3);
 		gltf.scene.children[15].material.transparent = true;
 		gltf.scene.children[15].material.smoothShading = true;
+        gltf.scene.children[15].material.side = THREE.DoubleSide;
+
+        gltf.scene.children[16].material.color.set(0x899499);
+        gltf.scene.children[16].material.transparent = false;
 
 		gltf.scene.children[17].material.color.set(0xb200ff);
         gltf.scene.children[17].visible = false;
-		gltf.scene.children[17].material.transparent = true;
+        gltf.scene.children[17].material.smoothShading = true;
+        gltf.scene.children[17].material.side = THREE.DoubleSide;
 
 		gltf.scene.traverse((node) => {
 			if (node.isMesh) {
@@ -135,6 +153,65 @@ function init() {
 		console.error('An error happened during loading:', error);
 	});
 
+    const haus13 = document.createElement( 'div' );
+    haus13.className = 'hausnummer';
+    haus13.textContent = '13';
+
+    const haus13Label = new CSS2DObject( haus13 );
+    haus13Label.position.set( 14, 2.5, -1.2 );
+    haus13Label.center.set( 1, 1 );
+    scene.add( haus13Label );
+
+    const haus15 = document.createElement( 'div' );
+    haus15.className = 'hausnummer';
+    haus15.textContent = '15';
+
+    const haus15Label = new CSS2DObject( haus15 );
+    haus15Label.position.set( 9, 1.25, 1.8 );
+    haus15Label.center.set( 1, 1 );
+    scene.add( haus15Label );
+
+    const haus17 = document.createElement( 'div' );
+    haus17.className = 'hausnummer';
+    haus17.textContent = '17';
+
+    const haus17Label = new CSS2DObject( haus17 );
+    haus17Label.position.set( 6, 4, -2.25 );
+    haus17Label.center.set( 1, 1 );
+    scene.add( haus17Label );
+
+    const haus19 = document.createElement( 'div' );
+    haus19.className = 'hausnummer';
+    haus19.textContent = '19';
+
+    const haus19Label = new CSS2DObject( haus19 );
+    haus19Label.position.set( 3.25, 3, 1.9 );
+    haus19Label.center.set( 1, 1 );
+    scene.add( haus19Label );
+
+    const haus21 = document.createElement( 'div' );
+    haus21.className = 'hausnummer';
+    haus21.textContent = '21';
+
+    const haus21Label = new CSS2DObject( haus21 );
+    haus21Label.position.set( -5.5, 6.75, 0 );
+    haus21Label.center.set( 1, 1 );
+    scene.add( haus21Label );
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight/2 );
+    renderer.setClearColor(0xffffff, 1);
+    areal.appendChild( renderer.domElement );
+
+    labelRenderer = new CSS2DRenderer();
+    labelRenderer.setSize( window.innerWidth, window.innerHeight/2 );
+    labelRenderer.domElement.style.position = 'absolute';
+    labelRenderer.domElement.style.top = '0px';
+    areal.appendChild( labelRenderer.domElement );
+
+    controls = new OrbitControls(camera, labelRenderer.domElement);
+
     setupGUI();
     document.getElementById("barrierefrei").addEventListener("click", toggleArrows, false);
     window.addEventListener('resize', onWindowResize, false);
@@ -150,11 +227,14 @@ function handleButtonClick(materialIndex) {
         if (key === materialKeyToUpdate) {
             // Update the selected material
             material.color.set(0x4dff00); // New color
-            material.opacity = 0.95; // New opacity
-            material.forceSingePlass = false;
+            material.opacity = 1; // New opacity
+            material.transparent = false;
+            material.side = THREE.DoubleSide;
         } else {
             // Reset other materials to their original state
             if (originalMaterials[key]) {
+                material.side = THREE.BackSide;
+                material.transparent = true;
                 material.color.copy(originalMaterials[key].color); // Reset color
                 material.opacity = originalMaterials[key].opacity; // Reset opacity
                 material.forceSingePlass =  originalMaterials[key].forceSingePlass;
@@ -231,10 +311,10 @@ function toggleArrows() {
 }
 
 function onWindowResize() {
-    camera.aspect = document.body.clientWidth / (window.innerHeight / 2);
+    camera.aspect = window.innerWidth / (window.innerHeight / 2);
     camera.updateProjectionMatrix();
-    renderer.setSize(document.body.clientWidth, window.innerHeight / 2);
-    labelRenderer.setSize(document.body.clientWidth, window.innerHeight / 2);
+    renderer.setSize( window.innerWidth, window.innerHeight/2 );
+    labelRenderer.setSize( window.innerWidth, window.innerHeight/2);
 }
 
 function animate() {

@@ -2159,7 +2159,8 @@ button.weitere{
 /*Lageplan*/
 #areal{
    margin-left: calc(var(--smallSpaceBorder)*-1);
-   position: relative;
+   height: 50vh;
+   position: relative !important;
 }
 
 #areal #lageplan{
@@ -2280,6 +2281,20 @@ button.show_arrows{
 button.show_arrows img{
     width: 100%;
     height: auto;
+}
+
+.hausnummer{
+    background-color: var(--baseText);
+    color: var(--baseColor);
+    font-weight: bold;
+    font-family: 'Helvetice Neue Bold';
+    font-size: 1em;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    padding: 0 0.5px;
 }
 
 /*Werkstatt*/
