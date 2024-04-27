@@ -29,6 +29,8 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
 
 let scene, camera, renderer, labelRenderer, controls, dynamo;
 let activeRoomID = 11; // Example initial active room ID
@@ -52,7 +54,7 @@ const rooms = {
 	tanzdach: { id: 10, folder: "21", name: "Tanzdach" },
 	probe: { id: 6, folder: "21", name: "Probebühne" },
 	werk21: { id: 0, folder: "21", name: "Werk 21" },
-	foto: { id: 0, folder: "21", name: "Werkbereich (Fotolabor)" },
+	foto: { id: 14, folder: "21", name: "Werkbereich (Fotolabor)" },
 	kermamik: { id: 12, folder: "21", name: "Werkbereich (Keramik)" },
 	textil: { id: 11, folder: "21", name: "Werkbereich (Textil)" },
 	sitzung: { id: 9, folder: "19", name: "Sitzungsräume" },
@@ -101,9 +103,13 @@ function init() {
     lightBackRightBottom.position.set(15, -2, -8);
     scene.add( lightBackRightBottom );
 
-    dynamo = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath( 'js/libs/draco/gltf/' );
 
-	dynamo.load('./models/Outlines_new.gltf', function (gltf) {
+    dynamo = new GLTFLoader();
+    dynamo.setDRACOLoader( dracoLoader );
+
+	dynamo.load('./models/Outlines_small-v4.glb', function (gltf) {
 		gltfScene = gltf.scene;
 		scene.add(gltfScene);
 
@@ -116,24 +122,24 @@ function init() {
             gltf.scene.children[i].geometry.computeVertexNormals();
 		}
 
-        gltf.scene.children[14].material.opacity = 1;
-		gltf.scene.children[14].material.color.set(0x000000);
-		gltf.scene.children[14].material.transparent = true;
-		gltf.scene.children[14].material.smoothShading = true;
-
-		gltf.scene.children[15].material.opacity = 0.9;
-		gltf.scene.children[15].material.color.set(0xD3D3D3);
+        gltf.scene.children[15].material.opacity = 1;
+		gltf.scene.children[15].material.color.set(0x000000);
 		gltf.scene.children[15].material.transparent = true;
 		gltf.scene.children[15].material.smoothShading = true;
-        gltf.scene.children[15].material.side = THREE.DoubleSide;
 
-        gltf.scene.children[16].material.color.set(0x899499);
-        gltf.scene.children[16].material.transparent = false;
+		gltf.scene.children[16].material.opacity = 0.9;
+		gltf.scene.children[16].material.color.set(0xD3D3D3);
+		gltf.scene.children[16].material.transparent = true;
+		gltf.scene.children[16].material.smoothShading = true;
+        gltf.scene.children[16].material.side = THREE.DoubleSide;
 
-		gltf.scene.children[17].material.color.set(0xb200ff);
-        gltf.scene.children[17].visible = false;
-        gltf.scene.children[17].material.smoothShading = true;
-        gltf.scene.children[17].material.side = THREE.DoubleSide;
+        gltf.scene.children[17].material.color.set(0x899499);
+        gltf.scene.children[17].material.transparent = false;
+
+		gltf.scene.children[18].material.color.set(0xb200ff);
+        gltf.scene.children[18].visible = false;
+        gltf.scene.children[18].material.smoothShading = true;
+        gltf.scene.children[18].material.side = THREE.DoubleSide;
 
 		gltf.scene.traverse((node) => {
 			if (node.isMesh) {
