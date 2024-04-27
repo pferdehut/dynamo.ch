@@ -217,6 +217,7 @@ function init() {
     areal.appendChild( labelRenderer.domElement );
 
     controls = new OrbitControls(camera, labelRenderer.domElement);
+    controls.addEventListener( 'change', labelRenderer );
 
     setupGUI();
     document.getElementById("barrierefrei").addEventListener("click", toggleArrows, false);
