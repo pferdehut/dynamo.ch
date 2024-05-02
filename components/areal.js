@@ -23,10 +23,8 @@ class Areal extends HTMLElement {
 customElements.define('areal-component', Areal);
 
 import * as THREE from 'three';
-import { MathUtils } from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
@@ -68,7 +66,7 @@ const rooms = {
 
 function init() {
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(fov, document.body.clientWidth / (window.innerHeight / 2), 1, 10000);
+    camera = new THREE.PerspectiveCamera(fov, document.body.clientWidth / (window.innerHeight / 2), 1, 100);
     camera.position.set(20, 15, perspective);
 
     const light = new THREE.DirectionalLight( 0xFFFFFF, 3 );
@@ -83,7 +81,7 @@ function init() {
     lightLeft.position.set(-10, 10, 8);
     scene.add( lightLeft );
 
-    const lightLeftBottom = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    /*const lightLeftBottom = new THREE.DirectionalLight( 0xFFFFFF, 3 );
     lightLeftBottom.position.set(-15, -2, 8);
     scene.add( lightLeftBottom );
 
@@ -101,7 +99,7 @@ function init() {
 
     const lightBackRightBottom = new THREE.DirectionalLight( 0xFFFFFF, 3 );
     lightBackRightBottom.position.set(15, -2, -8);
-    scene.add( lightBackRightBottom );
+    scene.add( lightBackRightBottom );*/
 
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath( 'js/libs/draco/gltf/' );
@@ -217,7 +215,9 @@ function init() {
     areal.appendChild( labelRenderer.domElement );
 
     controls = new OrbitControls(camera, labelRenderer.domElement);
-    controls.addEventListener( 'change', labelRenderer );
+    controls.enablePan = false;
+    controls.enableRotate = false;
+    //controls.addEventListener( 'change', labelRenderer );
 
     setupGUI();
     document.getElementById("barrierefrei").addEventListener("click", toggleArrows, false);
