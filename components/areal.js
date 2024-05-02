@@ -81,11 +81,11 @@ function init() {
     lightLeft.position.set(-10, 10, 8);
     scene.add( lightLeft );
 
-    /*const lightLeftBottom = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    const lightLeftBottom = new THREE.DirectionalLight( 0xFFFFFF, 3 );
     lightLeftBottom.position.set(-15, -2, 8);
     scene.add( lightLeftBottom );
 
-    const lightBackLeft = new THREE.DirectionalLight( 0xFFFFFF, 3 );
+    /*const lightBackLeft = new THREE.DirectionalLight( 0xFFFFFF, 3 );
     lightBackLeft.position.set(-15, 10, -8);
     scene.add( lightBackLeft );
 
@@ -107,7 +107,7 @@ function init() {
     dynamo = new GLTFLoader();
     dynamo.setDRACOLoader( dracoLoader );
 
-	dynamo.load('./models/Outlines_small-v4.glb', function (gltf) {
+	dynamo.load('./models/Dynamo_Areal.gltf', function (gltf) {
 		gltfScene = gltf.scene;
 		scene.add(gltfScene);
 
@@ -131,8 +131,9 @@ function init() {
 		gltf.scene.children[16].material.smoothShading = true;
         gltf.scene.children[16].material.side = THREE.DoubleSide;
 
+        gltf.scene.children[17].material.opacity = 0.75;
         gltf.scene.children[17].material.color.set(0x899499);
-        gltf.scene.children[17].material.transparent = false;
+        gltf.scene.children[17].material.transparent = true;
 
 		gltf.scene.children[18].material.color.set(0xb200ff);
         gltf.scene.children[18].visible = false;
